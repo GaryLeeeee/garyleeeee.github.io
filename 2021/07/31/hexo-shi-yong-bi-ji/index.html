@@ -428,7 +428,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.5k
                 </div>
                 
 
@@ -492,7 +492,7 @@
 <li>找一个主题并下载到<code>/themes</code>目录下<br>比如我的主题是<a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery">https://github.com/blinkfox/hexo-theme-matery</a></li>
 <li>修改<code>_config.yml</code>的<code>theme: landscape</code>为<code>theme: matery</code></li>
 </ul>
-<h2 id="5-如何部署到远程-username-github-io"><a href="#5-如何部署到远程-username-github-io" class="headerlink" title="5.如何部署到远程{username.github.io}"></a>5.如何部署到远程{username.github.io}</h2><h3 id="5-1-配置git账户信息"><a href="#5-1-配置git账户信息" class="headerlink" title="5.1 配置git账户信息"></a>5.1 配置git账户信息</h3><p>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com">git@github.com</a>:GaryLeeeee/garyleeeee.github.io.git<br>  branch: master</p>
+<h2 id="5-如何部署到远程-username-github-io"><a href="#5-如何部署到远程-username-github-io" class="headerlink" title="5.如何部署到远程{username.github.io}"></a>5.如何部署到远程{username.github.io}</h2><h3 id="5-1-配置git账户信息"><a href="#5-1-配置git账户信息" class="headerlink" title="5.1 配置git账户信息"></a>5.1 配置git账户信息</h3><p>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com">git@github.com</a>:$${GitHub用户名}/${仓库名}.git<br>  branch: master</p>
 <h3 id="5-2-安装deployer插件"><a href="#5-2-安装deployer插件" class="headerlink" title="5.2 安装deployer插件"></a>5.2 安装deployer插件</h3><p><code>npm install hexo-deployer-git --save</code><br>如果没安装的话<code>hexo d</code>一般会报错”Deployer not found: github”或者”Deployer not found: git”</p>
 <h3 id="5-3-hexo-d-部署"><a href="#5-3-hexo-d-部署" class="headerlink" title="5.3 hexo d(部署)"></a>5.3 hexo d(部署)</h3><p>hexo d是hexo doploy的缩写，用来部署服务到远程</p>
 <h2 id="6-如何写博客"><a href="#6-如何写博客" class="headerlink" title="6.如何写博客"></a>6.如何写博客</h2><h3 id="6-1-hexo-new-xxx-新建博客"><a href="#6-1-hexo-new-xxx-新建博客" class="headerlink" title="6.1 hexo new xxx(新建博客)"></a>6.1 hexo new xxx(新建博客)</h3><p>通过hexo new ‘my-first-blog’即可创建一个名字为my-first-blog的微博文件<br><img src="http://image.liuxianan.com/201608/20160823_183325_470_9306.png"></p>
@@ -611,9 +611,9 @@ Compressing objects: 100% (738/738), done.
 Writing objects: 100% (1167/1167), 7.87 MiB | 254.00 KiB/s, done.
 Total 1167 (delta 397), reused 0 (delta 0)
 remote: Resolving deltas: 100% (397/397), done.
-To github.com:GaryLeeeee/garyleeeee.github.io.git
+To github.com:GaryLeeeee/${仓库名}.git
  + 06ab1b8...af6b499 HEAD -&gt; master (forced update)
-Branch master set up to track remote branch master from git@github.com:GaryLeeeee/garyleeeee.github.io.git.
+Branch master set up to track remote branch master from git@github.com:GaryLeeeee/${仓库名}.git.
 INFO  Deploy done: git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>搞定！</p>
 <h3 id="7-6-新环境hexo命令无法使用？"><a href="#7-6-新环境hexo命令无法使用？" class="headerlink" title="7.6 新环境hexo命令无法使用？"></a>7.6 新环境hexo命令无法使用？</h3><pre class="line-numbers language-none"><code class="language-none">D:\code-r\lee-blog&gt; hexo
@@ -632,17 +632,17 @@ and the repository exists.<span aria-hidden="true" class="line-numbers-rows"><sp
 <p>先检查<code>_config.yml</code>中的部署地址：</p>
 <pre class="line-numbers language-none"><code class="language-none">deploy:
   type: git
-  repository: git@github.com:GaryLeeeee/garyleeeee.github.io.git
+  repository: git@github.com:${GitHub用户名}/${仓库名}.git
   branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如果<code>repository</code>是<code>git@github.com:xxx/xxx.git</code>，说明走的是SSH方式，需要本机SSH key能登录GitHub。</p>
-<h4 id="a-先测试GitHub-SSH是否可用"><a href="#a-先测试GitHub-SSH是否可用" class="headerlink" title="a.先测试GitHub SSH是否可用"></a>a.先测试GitHub SSH是否可用</h4><pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="7-7-1-先测试GitHub-SSH是否可用"><a href="#7-7-1-先测试GitHub-SSH是否可用" class="headerlink" title="7.7.1 先测试GitHub SSH是否可用"></a>7.7.1 先测试GitHub SSH是否可用</h4><pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>如果仍然报：</p>
 <pre class="line-numbers language-none"><code class="language-none">git@github.com: Permission denied (publickey).<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>说明当前本机没有可被GitHub识别的SSH key，或者这个key没有目标仓库权限。</p>
-<h4 id="b-如果本机已有GitLab的key，不要覆盖"><a href="#b-如果本机已有GitLab的key，不要覆盖" class="headerlink" title="b.如果本机已有GitLab的key，不要覆盖"></a>b.如果本机已有GitLab的key，不要覆盖</h4><p>如果<code>~/.ssh/id_ed25519.pub</code>已经给GitLab或公司代码库使用，不建议直接复用或覆盖。</p>
+<h4 id="7-7-2-如果本机已有GitLab的key，不要覆盖"><a href="#7-7-2-如果本机已有GitLab的key，不要覆盖" class="headerlink" title="7.7.2 如果本机已有GitLab的key，不要覆盖"></a>7.7.2 如果本机已有GitLab的key，不要覆盖</h4><p>如果<code>~/.ssh/id_ed25519.pub</code>已经给GitLab或公司代码库使用，不建议直接复用或覆盖。</p>
 <p>可以单独给GitHub生成一把新的key：</p>
 <pre class="line-numbers language-none"><code class="language-none">ssh-keygen -t ed25519 -C "你的GitHub邮箱" -f ~/.ssh/id_ed25519_github<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -654,13 +654,13 @@ and the repository exists.<span aria-hidden="true" class="line-numbers-rows"><sp
 <pre class="line-numbers language-none"><code class="language-none">~/.ssh/id_ed25519
 ~/.ssh/id_ed25519.pub<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="c-把GitHub专用公钥添加到GitHub"><a href="#c-把GitHub专用公钥添加到GitHub" class="headerlink" title="c.把GitHub专用公钥添加到GitHub"></a>c.把GitHub专用公钥添加到GitHub</h4><p>查看公钥：</p>
+<h4 id="7-7-3-把GitHub专用公钥添加到GitHub"><a href="#7-7-3-把GitHub专用公钥添加到GitHub" class="headerlink" title="7.7.3 把GitHub专用公钥添加到GitHub"></a>7.7.3 把GitHub专用公钥添加到GitHub</h4><p>查看公钥：</p>
 <pre class="line-numbers language-none"><code class="language-none">cat ~/.ssh/id_ed25519_github.pub<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>复制输出内容，添加到GitHub：</p>
 <pre class="line-numbers language-none"><code class="language-none">GitHub -&gt; Settings -&gt; SSH and GPG keys -&gt; New SSH key<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h4 id="d-配置GitHub使用专用key"><a href="#d-配置GitHub使用专用key" class="headerlink" title="d.配置GitHub使用专用key"></a>d.配置GitHub使用专用key</h4><p>如果<code>~/.ssh/config</code>不存在，可以新建：</p>
+<h4 id="7-7-4-配置GitHub使用专用key"><a href="#7-7-4-配置GitHub使用专用key" class="headerlink" title="7.7.4 配置GitHub使用专用key"></a>7.7.4 配置GitHub使用专用key</h4><p>如果<code>~/.ssh/config</code>不存在，可以新建：</p>
 <pre class="line-numbers language-none"><code class="language-none">touch ~/.ssh/config
 chmod 600 ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -676,7 +676,7 @@ chmod 600 ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span>
 <pre class="line-numbers language-none"><code class="language-none">~/.ssh/id_rsa
 ~/.ssh/id_ed25519<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="e-重新测试"><a href="#e-重新测试" class="headerlink" title="e.重新测试"></a>e.重新测试</h4><pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="7-7-5-重新测试"><a href="#7-7-5-重新测试" class="headerlink" title="7.7.5 重新测试"></a>7.7.5 重新测试</h4><pre class="line-numbers language-none"><code class="language-none">ssh -T git@github.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>正常会看到类似：</p>
 <pre class="line-numbers language-none"><code class="language-none">Hi GaryLeeeee! You've successfully authenticated, but GitHub does not provide shell access.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -691,6 +691,55 @@ chmod 600 ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span>
 <li><code>_config.yml</code>里的<code>repository</code>仓库地址是否写对</li>
 <li>目标仓库是否存在</li>
 </ul>
+<h3 id="7-8-hexo-d使用了global的Git账号"><a href="#7-8-hexo-d使用了global的Git账号" class="headerlink" title="7.8 hexo d使用了global的Git账号"></a>7.8 hexo d使用了global的Git账号</h3><p>执行<code>hexo d</code>或<code>hexo d -g</code>部署成功了，但是GitHub Pages仓库里的提交人不是自己想要的账号，而是本机global配置的账号。</p>
+<p>可以先看一下当前global配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --global --get user.name
+git config --global --get user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>再看一下当前博客源码仓库的local配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --local --get user.name
+git config --local --get user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>如果源码仓库local配置是对的，但<code>hexo d</code>还是用了global账号，原因一般是：<code>hexo-deployer-git</code>实际会在<code>.deploy_git</code>目录里提交部署产物。</p>
+<p>也就是说，部署提交不是在当前源码仓库里提交，而是在<code>.deploy_git</code>这个临时Git仓库里提交。如果<code>.deploy_git</code>没有单独配置<code>user.name</code>和<code>user.email</code>，就会回退使用global配置。</p>
+<h4 id="7-8-1-推荐方式：在-config-yml里配置部署账号"><a href="#7-8-1-推荐方式：在-config-yml里配置部署账号" class="headerlink" title="7.8.1 推荐方式：在_config.yml里配置部署账号"></a>7.8.1 推荐方式：在_config.yml里配置部署账号</h4><p><code>hexo-deployer-git</code>支持在<code>deploy</code>下配置<code>name</code>和<code>email</code>：</p>
+<pre class="line-numbers language-none"><code class="language-none">deploy:
+  type: git
+  repository: git@github.com:${GitHub用户名}/${仓库名}.git
+  branch: master
+  name: ${GitHub用户名}
+  email: ${Git提交邮箱}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这样后续<code>.deploy_git</code>重新初始化时，也会使用这里配置的账号。</p>
+<h4 id="7-8-2-如果-deploy-git已经存在，需要同步改local配置"><a href="#7-8-2-如果-deploy-git已经存在，需要同步改local配置" class="headerlink" title="7.8.2 如果.deploy_git已经存在，需要同步改local配置"></a>7.8.2 如果.deploy_git已经存在，需要同步改local配置</h4><p>如果<code>.deploy_git</code>目录已经存在，可能之前已经初始化过，此时可以直接给它设置local账号：</p>
+<pre class="line-numbers language-none"><code class="language-none">cd .deploy_git
+git config user.name ${GitHub用户名}
+git config user.email ${Git提交邮箱}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>确认配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">git config --local --get user.name
+git config --local --get user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>正常输出：</p>
+<pre class="line-numbers language-none"><code class="language-none">${GitHub用户名}
+${Git提交邮箱}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后回到项目根目录重新部署：</p>
+<pre class="line-numbers language-none"><code class="language-none">cd ..
+hexo d -g<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="7-8-3-也可以删除-deploy-git后重新部署"><a href="#7-8-3-也可以删除-deploy-git后重新部署" class="headerlink" title="7.8.3 也可以删除.deploy_git后重新部署"></a>7.8.3 也可以删除.deploy_git后重新部署</h4><p>如果不想手动改<code>.deploy_git</code>配置，也可以删除<code>.deploy_git</code>目录，让Hexo下次部署时重新初始化：</p>
+<pre class="line-numbers language-none"><code class="language-none">rm -rf .deploy_git
+hexo d -g<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>前提是<code>_config.yml</code>里已经配置了<code>deploy.name</code>和<code>deploy.email</code>。</p>
+<h4 id="7-8-4-为什么不建议直接改global？"><a href="#7-8-4-为什么不建议直接改global？" class="headerlink" title="7.8.4 为什么不建议直接改global？"></a>7.8.4 为什么不建议直接改global？</h4><p>因为本机可能有多个Git账号，比如：</p>
+<ul>
+<li>公司GitLab账号</li>
+<li>个人GitHub账号</li>
+<li>其他项目账号</li>
+</ul>
+<p>直接改global会影响其他目录。更推荐按项目或按部署工具单独配置，避免不同仓库提交人混乱。</p>
 
                 
             </div>
@@ -1221,7 +1270,7 @@ chmod 600 ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">126.3k</span>&nbsp;字
+                class="white-color">137.7k</span>&nbsp;字
             
             
             

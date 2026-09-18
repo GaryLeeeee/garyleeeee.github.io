@@ -320,6 +320,92 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/09/14/kafka/kafka-ru-he-bao-zheng-shu-ju-bu-diu-shi/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka如何保证数据不丢失？">
+                            
+                            <span class="card-title">Kafka如何保证数据不丢失？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、Kafka中数据是怎么传输的？Kafka中数据传输分为三步：
+
+Producer端将消息发送给Broker
+Broker端将消息进行同步并持久化
+Consumer端从Broker将消息拉取并消费
+
+二、Kafka如何保证数据不丢失？因为
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Kafka/" class="post-category">
+                                    Kafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/09/14/kafka/kafka-ru-he-bi-mian-chong-fu-xiao-fei/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Kafka如何避免重复消费？">
+                            
+                            <span class="card-title">Kafka如何避免重复消费？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、为什么会出现重复消费的问题？
+一个消费者组有多个消费者，每条消息只会被某个消费者的某个分区消费，如果没有正常提交offset，就会导致后续重复拉取到该消息而重复消费
+超过max.poll.interval.ms时间还没消费完就会触发重平
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Kafka/" class="post-category">
+                                    Kafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/09/14/kafka/kafka-de-fu-ben-ji-zhi-you-shi-me-yong/">
                         <div class="card-image">
                             
@@ -791,104 +877,6 @@ JSON
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/10/scene/ru-he-ti-sheng-jie-kou-de-xing-neng/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="如何提升接口的性能？">
-                            
-                            <span class="card-title">如何提升接口的性能？</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、如何发现接口的性能问题？可以通过压测结合日志的方式去分析接口的瓶颈点，然后去针对性优化。
-二、接口性能优化方案
-数据库优化：《如何排查慢SQL问题？》、《如何进行SQL调优？》
-引入缓存中间件：对于查询结果一样的请求，为了减少数据库压力
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
-                                    场景题
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/10/data/shi-me-shi-tiao-biao/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="什么是跳表？">
-                            
-                            <span class="card-title">什么是跳表？</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是跳表？跳表其实就是多层链表，用来解决单层链表复杂度较高的问题。
-跳表的特点：
-
-多层链表组成
-每一层链表都是有序的
-最后一层链表包含所有数据
-第二层链表开始包含前面层所有数据
-…
-
-二、跳表操作1、插入跳表插入逻辑跟链表一样的是要
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-10
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E8%B7%B3%E8%A1%A8/">
-                            <span class="chip bg-color">跳表</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -991,7 +979,7 @@ JSON
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">126.3k</span>&nbsp;字
+                class="white-color">137.7k</span>&nbsp;字
             
             
             

@@ -320,6 +320,92 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/10/02/scene/ru-he-bing-fa-zhi-xing-duo-ge-ren-wu-bing-deng-dai-zhi-xing-jie-guo/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="如何并发执行多个任务并等待执行结果？">
+                            
+                            <span class="card-title">如何并发执行多个任务并等待执行结果？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、为什么要并发执行多个任务，而不是一个个顺序执行呢？比如一个接口执行了A、B、C三个任务，分别耗时1、2、3秒，如果顺序执行的话，总耗时需要6秒，代码如下：
+public class TestExecuteClass {
+    @Tes
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
+                                    场景题
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/10/02/kafka/kafka-zhong-partition-he-consumer-shu-liang-ying-gai-zen-me-fen-pei/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Kafka中Partition和Consumer数量应该怎么分配？">
+                            
+                            <span class="card-title">Kafka中Partition和Consumer数量应该怎么分配？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、背景Kafka中各个概念关系如下：
+
+一个Topic有多个Partition
+一个Consumer Group有多个Consumer
+一个Consumer可以监听多个Partition
+
+二、Kafka中Partition和Consum
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Kafka/" class="post-category">
+                                    Kafka
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/09/28/trouble/ya-ce-fen-xi/">
                         <div class="card-image">
                             
@@ -747,92 +833,6 @@
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/14/kafka/kafka-ru-he-bao-zheng-shu-ju-bu-diu-shi/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka如何保证数据不丢失？">
-                            
-                            <span class="card-title">Kafka如何保证数据不丢失？</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、Kafka中数据是怎么传输的？Kafka中数据传输分为三步：
-
-Producer端将消息发送给Broker
-Broker端将消息进行同步并持久化
-Consumer端从Broker将消息拉取并消费
-
-二、Kafka如何保证数据不丢失？因为
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Kafka/" class="post-category">
-                                    Kafka
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/14/kafka/kafka-ru-he-bi-mian-chong-fu-xiao-fei/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Kafka如何避免重复消费？">
-                            
-                            <span class="card-title">Kafka如何避免重复消费？</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、为什么会出现重复消费的问题？
-一个消费者组有多个消费者，每条消息只会被某个消费者的某个分区消费，如果没有正常提交offset，就会导致后续重复拉取到该消息而重复消费
-超过max.poll.interval.ms时间还没消费完就会触发重平
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-14
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Kafka/" class="post-category">
-                                    Kafka
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -935,7 +935,7 @@ Consumer端从Broker将消息拉取并消费
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">126.3k</span>&nbsp;字
+                class="white-color">137.7k</span>&nbsp;字
             
             
             

@@ -320,6 +320,117 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/08/01/spring/spring-ru-he-jie-jue-xun-huan-yi-lai-de-wen-ti/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Spring如何解决循环依赖的问题？">
+                            
+                            <span class="card-title">Spring如何解决循环依赖的问题？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是循环依赖？循环依赖其实就是两个对象互相依赖，包括直接和间接，比如
+
+直接：A依赖B，B依赖A
+间接：A依赖B，B依赖C，C依赖A// A依赖B
+class A {
+  public B b;
+}
+// B依赖A
+class B {
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Spring/">
+                            <span class="chip bg-color">Spring</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+                            <span class="chip bg-color">循环依赖</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/07/31/ru-he-shi-xian-yi-ge-dian-zan-gong-neng/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="如何实现一个点赞功能？">
+                            
+                            <span class="card-title">如何实现一个点赞功能？</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、介绍点赞一般出现在朋友圈、微博、动态等场景，基本操作有点赞、取消点赞、查询点赞数量、判断自己是否点过赞等
+二、实现使用Redis的set结构简单实现，key存储帖子id，value存储点赞用户的uid点赞：sadd &lt;key&gt
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-31
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
+                                    场景题
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Redis/">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%9C%BA%E6%99%AF%E9%A2%98/">
+                            <span class="chip bg-color">场景题</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/07/31/ru-he-you-hua-da-liang-if-else-dai-ma-jie-gou/">
                         <div class="card-image">
                             
@@ -857,100 +968,6 @@ UUID
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/07/17/ru-he-she-ji-yi-ge-miao-sha-xi-tong/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="如何设计一个秒杀系统？">
-                            
-                            <span class="card-title">如何设计一个秒杀系统？</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、分析秒杀系统1、秒杀系统的特点
-高并发：瞬间流量大
-超卖问题：秒杀商品库存少
-接口防刷：秒杀前刷新频繁
-
-2、秒杀系统需要考虑的点秒杀前：
-
-页面资源访问多：资源静态化，存CDN就近访问，开启资源压缩，减少传输数据量，提高速度
-秒杀按钮
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
-                                    场景题
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E5%9C%BA%E6%99%AF%E9%A2%98/">
-                            <span class="chip bg-color">场景题</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%A7%92%E6%9D%80/">
-                            <span class="chip bg-color">秒杀</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/07/17/bo-ke-dao-hang/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="博客导航">
-                            
-                            <span class="card-title">博客导航</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                自己学习记录的
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-17
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                GaryLee
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1053,7 +1070,7 @@ UUID
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">126.3k</span>&nbsp;字
+                class="white-color">137.7k</span>&nbsp;字
             
             
             
