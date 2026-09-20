@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">线上Redis的Zset集合占用内存过大问题分析</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-5">
+    <div class="text-cover__meta">
+        <span>线上问题排查</span>
+        
+        <span>2023.09.28</span>
+        
     </div>
+    <div class="text-cover__title">线上Redis的Zset集合占用内存过大问题分析</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -421,7 +427,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -453,7 +459,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>有一天，企微收到了一条告警：Redis实例内存达到80%已自动扩容。通过分析内存变化曲线，发现是近几天才开始涨得比较快。通过大key分析拿到了几个key，命名分别是ts_file_0、ts_file_1、…、ts_file_9，很明显这些大key都是同一个场景下生成的，然后通过查看问题代码可以发现也刚好是前几天才上线的，那么问题就明确了，现在就需要来看看如何解决这些大key。（具体可参考<a href="https://garyleeeee.github.io/2023/08/19/redis/ru-he-chu-li-redis-de-da-key-wen-ti/">《如何处理Redis的大key问题？》</a>）<br><img src="/images/trouble/%E7%BA%BF%E4%B8%8ARedis%E7%9A%84Zset%E9%9B%86%E5%90%88%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E8%BF%87%E5%A4%A7%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%901.png"></p>
+                <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>有一天，企微收到了一条告警：Redis实例内存达到80%已自动扩容。通过分析内存变化曲线，发现是近几天才开始涨得比较快。通过大key分析拿到了几个key，命名分别是ts_file_0、ts_file_1、…、ts_file_9，很明显这些大key都是同一个场景下生成的，然后通过查看问题代码可以发现也刚好是前几天才上线的，那么问题就明确了，现在就需要来看看如何解决这些大key。（具体可参考<a href="/2023/08/19/redis/ru-he-chu-li-redis-de-da-key-wen-ti/" title="《如何处理Redis的大key问题？》">《如何处理Redis的大key问题？》</a>）<br><img src="/images/trouble/%E7%BA%BF%E4%B8%8ARedis%E7%9A%84Zset%E9%9B%86%E5%90%88%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E8%BF%87%E5%A4%A7%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%901.png"></p>
 <h2 id="二、具体分析"><a href="#二、具体分析" class="headerlink" title="二、具体分析"></a>二、具体分析</h2><p>首先我们能想到的就是优化value结构，让功能不变的前提下，尽可能减少存储数据量。</p>
 <p>原先的value结构是：</p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token property">"index"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"xxx"</span><span class="token punctuation">,</span> <span class="token property">"duration"</span><span class="token operator">:</span> <span class="token number">66</span><span class="token punctuation">,</span> <span class="token property">"extend"</span><span class="token operator">:</span> <span class="token string">"xxx"</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -712,9 +718,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="压测分析">
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>线上问题排查</span>
+        
+        <span>2023.09.28</span>
+        
+    </div>
+    <div class="text-cover__title">压测分析</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">压测分析</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -753,9 +770,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="没做线程池隔离导致的线上故障分析">
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>线上问题排查</span>
+        
+        <span>2023.09.20</span>
+        
+    </div>
+    <div class="text-cover__title">没做线程池隔离导致的线上故障分析</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">没做线程池隔离导致的线上故障分析</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -979,7 +1007,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

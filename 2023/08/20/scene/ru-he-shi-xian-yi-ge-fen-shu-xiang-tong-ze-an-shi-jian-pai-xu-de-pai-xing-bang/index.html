@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">如何实现一个分数相同则按时间排序的排行榜？</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-5">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2023.08.20</span>
+        
     </div>
+    <div class="text-cover__title">如何实现一个分数相同则按时间排序的排行榜？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -421,7 +427,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -474,7 +480,7 @@ score = 分数 + (1 - 时间戳 / 1^13)<span aria-hidden="true" class="line-numb
 <li>…</li>
 </ul>
 <h3 id="2、除了Redis，还有什么实现排行榜的方案吗？"><a href="#2、除了Redis，还有什么实现排行榜的方案吗？" class="headerlink" title="2、除了Redis，还有什么实现排行榜的方案吗？"></a>2、除了Redis，还有什么实现排行榜的方案吗？</h3><p>除了Redis，还可以使用MySQL的order by语句进行排序，不过要注意性能问题，确保排序字段加上索引。Redis比较适用于数据量大、更新频繁、访问频繁的场景，MySQL比较适用于数据量小、使用不频繁的场景。</p>
-<h3 id="3、如何实现大于两个维度的多维度排序？"><a href="#3、如何实现大于两个维度的多维度排序？" class="headerlink" title="3、如何实现大于两个维度的多维度排序？"></a>3、如何实现大于两个维度的多维度排序？</h3><p>一般按照时间排序的话就只需要额外用到小数即可，但如果需要用到多维度比如用户等级、用户性别等，那么我们可以参考雪花算法来做（具体可参考文章<a href="https://garyleeeee.github.io/2023/07/19/ru-he-she-ji-fen-bu-shi-id/">《如何设计分布式ID？》</a>）。</p>
+<h3 id="3、如何实现大于两个维度的多维度排序？"><a href="#3、如何实现大于两个维度的多维度排序？" class="headerlink" title="3、如何实现大于两个维度的多维度排序？"></a>3、如何实现大于两个维度的多维度排序？</h3><p>一般按照时间排序的话就只需要额外用到小数即可，但如果需要用到多维度比如用户等级、用户性别等，那么我们可以参考雪花算法来做（具体可参考文章<a href="/2023/07/19/ru-he-she-ji-fen-bu-shi-id/" title="《如何设计分布式ID？》">《如何设计分布式ID？》</a>）。</p>
 <p>比如，我们定义score为10位，前5位为用户积分，中间3位为用户等级，最后1位为用户性别，那么最终的score就可能为<code>8000010020</code>，那么我们在排序的时候就会优先以前5位排序，如果前5位相同则按照中间3位排序，如果中间3位也想通则按照最后1位排序，这样就实现了榜单的多维度排序。</p>
 
                 
@@ -719,9 +725,20 @@ score = 分数 + (1 - 时间戳 / 1^13)<span aria-hidden="true" class="line-numb
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="如何防止库存超卖？">
+
+<div class="text-cover text-cover--card text-cover-palette-4">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2023.08.20</span>
+        
+    </div>
+    <div class="text-cover__title">如何防止库存超卖？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">如何防止库存超卖？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -772,9 +789,20 @@ score = 分数 + (1 - 时间戳 / 1^13)<span aria-hidden="true" class="line-numb
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="limit 1000000,0加载很慢如何优化？">
+
+<div class="text-cover text-cover--card text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>MySQL</span>
+        
+        <span>2023.08.20</span>
+        
+    </div>
+    <div class="text-cover__title">limit 1000000,0加载很慢如何优化？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">limit 1000000,0加载很慢如何优化？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1006,7 +1034,7 @@ score = 分数 + (1 - 时间戳 / 1^13)<span aria-hidden="true" class="line-numb
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

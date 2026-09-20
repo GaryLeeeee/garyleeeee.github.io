@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">如何提升接口的性能？</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2023.09.10</span>
+        
     </div>
+    <div class="text-cover__title">如何提升接口的性能？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -417,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -451,9 +457,9 @@
             <div id="articleContent">
                 <h2 id="一、如何发现接口的性能问题？"><a href="#一、如何发现接口的性能问题？" class="headerlink" title="一、如何发现接口的性能问题？"></a>一、如何发现接口的性能问题？</h2><p>可以通过压测结合日志的方式去分析接口的瓶颈点，然后去针对性优化。</p>
 <h2 id="二、接口性能优化方案"><a href="#二、接口性能优化方案" class="headerlink" title="二、接口性能优化方案"></a>二、接口性能优化方案</h2><ul>
-<li><strong>数据库优化</strong>：<a href="https://garyleeeee.github.io/2023/08/19/mysql/ru-he-pai-cha-man-sql-wen-ti/">《如何排查慢SQL问题？》</a>、<a href="https://garyleeeee.github.io/2023/08/19/mysql/ru-he-jin-xing-sql-diao-you/">《如何进行SQL调优？》</a></li>
-<li><strong>引入缓存中间件</strong>：对于查询结果一样的请求，为了减少数据库压力，可以考虑引入Redis作为缓存数据库，同时也能提高接口响应速度。（相关文章：<a href="https://garyleeeee.github.io/2023/08/23/redis-wei-shi-me-zhe-me-kuai/">《Redis为什么这么快？》</a>）</li>
-<li><strong>资源复用</strong>：可以用一些池化技术减少重复资源创建消耗带来的性能消耗（相关文章：<a href="https://garyleeeee.github.io/2021/07/28/xian-cheng-chi-xue-xi-bi-ji/">线程池学习笔记</a>）</li>
+<li><strong>数据库优化</strong>：<a href="/2023/08/19/mysql/ru-he-pai-cha-man-sql-wen-ti/" title="《如何排查慢SQL问题？》">《如何排查慢SQL问题？》</a>、<a href="/2023/08/19/mysql/ru-he-jin-xing-sql-diao-you/" title="《如何进行SQL调优？》">《如何进行SQL调优？》</a></li>
+<li><strong>引入缓存中间件</strong>：对于查询结果一样的请求，为了减少数据库压力，可以考虑引入Redis作为缓存数据库，同时也能提高接口响应速度。（相关文章：<a href="/2023/08/23/redis-wei-shi-me-zhe-me-kuai/" title="《Redis为什么这么快？》">《Redis为什么这么快？》</a>）</li>
+<li><strong>资源复用</strong>：可以用一些池化技术减少重复资源创建消耗带来的性能消耗（相关文章：<a href="/2021/07/28/xian-cheng-chi-xue-xi-bi-ji/" title="线程池学习笔记">线程池学习笔记</a>）</li>
 <li><strong>批量操作</strong>：减少循环操作（如数据库调用、RPC调用等），如查询100次RPC接口改为查询1次批量查接口，可以减少多余的网络IO消耗，从而提高接口响应速度</li>
 <li><strong>Future机制</strong>：采用线程池配合Future机制使用，可以同时并行执行多个高耗时的接口，从而避免同步阻塞的问题</li>
 <li><strong>锁优化</strong>：尽量减少锁粒度和锁持有时间，减少线程竞争导致阻塞问题</li>
@@ -700,9 +706,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="synchronized和ReentrantLock有什么区别？">
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>并发</span>
+        
+        <span>2023.09.10</span>
+        
+    </div>
+    <div class="text-cover__title">synchronized和ReentrantLock有什么区别？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">synchronized和ReentrantLock有什么区别？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -749,9 +766,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="什么是跳表？">
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>数据结构</span>
+        
+        <span>2023.09.10</span>
+        
+    </div>
+    <div class="text-cover__title">什么是跳表？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">什么是跳表？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -983,7 +1011,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">排行榜的最佳实践</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2023.11.28</span>
+        
     </div>
+    <div class="text-cover__title">排行榜的最佳实践</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -421,7 +427,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -490,8 +496,8 @@
 <p>那么我们可以用分桶的思想，将排行榜按照积分拆分为多个zset，如图所示：<br><img src="/images/scene/%E6%8E%92%E8%A1%8C%E6%A6%9C%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B51.png"></p>
 <p><strong>优点</strong>：避免单key过大，能有效加快读写性能<br><strong>缺点</strong>：实现复杂，要考虑分数增加带来的桶升级（不建议数据量小的场景去使用）</p>
 <h3 id="3、多维度排序"><a href="#3、多维度排序" class="headerlink" title="3、多维度排序"></a>3、多维度排序</h3><p>一般情况下，我们都会选择Redis的zset数据结构来实现一个排行榜，但是zset只支持一个score字段给我们使用，那是不是就只能单维度排序了呢？</p>
-<p>比如我们在积分相等的时候，按照先达成的排前面，那么就可以把时间信息存到小数点后（前提是分数只有正整数），查询分数的时候直接拿正数部分即可（具体可参考文章<a href="https://garyleeeee.github.io/2023/08/20/scene/ru-he-shi-xian-yi-ge-fen-shu-xiang-tong-ze-an-shi-jian-pai-xu-de-pai-xing-bang/">《如何实现一个分数相同则按时间排序的排行榜？》</a>）。</p>
-<p>但如果我们不止时间维度，还可能有性别维度、点赞维度等呢？那么我们可以参考雪花算法，来将score分为多个段，每个段存不同的维度积分，再按照先后优先级排序即可（具体可参考文章<a href="https://garyleeeee.github.io/2023/07/19/ru-he-she-ji-fen-bu-shi-id/">《如何设计分布式ID？》</a>）</p>
+<p>比如我们在积分相等的时候，按照先达成的排前面，那么就可以把时间信息存到小数点后（前提是分数只有正整数），查询分数的时候直接拿正数部分即可（具体可参考文章<a href="/2023/08/20/scene/ru-he-shi-xian-yi-ge-fen-shu-xiang-tong-ze-an-shi-jian-pai-xu-de-pai-xing-bang/" title="《如何实现一个分数相同则按时间排序的排行榜？》">《如何实现一个分数相同则按时间排序的排行榜？》</a>）。</p>
+<p>但如果我们不止时间维度，还可能有性别维度、点赞维度等呢？那么我们可以参考雪花算法，来将score分为多个段，每个段存不同的维度积分，再按照先后优先级排序即可（具体可参考文章<a href="/2023/07/19/ru-he-she-ji-fen-bu-shi-id/" title="《如何设计分布式ID？》">《如何设计分布式ID？》</a>）</p>
 <h3 id="4、分页查询"><a href="#4、分页查询" class="headerlink" title="4、分页查询"></a>4、分页查询</h3><p>我们的印象中，比如我们的点赞排行榜、商品排行榜、消费排行榜等，都好像不是全量查询的？没错，一方面是为了查询性能，避免一次性查询大量数据，另一方面也是场景限制，一般我们的排行榜只需要显示Top10、Top100等，最多再加上当前用户的排名即可。</p>
 <p>所以，我们在功能设计上，一般就默认分页查询即可，一页10条20条都可以，但是为了防止深分页问题的出现，我们也要在查询入口处加上参数校验（事实上比如线上请求第1000000条数据，按照功能场景来说是几乎不会也不可能上拉刷新到这么后面去的，所以大概率是用户恶意请求，可以做一下拦截过滤）。</p>
 <h3 id="5、适当使用缓存"><a href="#5、适当使用缓存" class="headerlink" title="5、适当使用缓存"></a>5、适当使用缓存</h3><p>一些数据实时性不高的排行榜我们也可以适当使用缓存，比如服务端缓存、客户端缓存等。</p>
@@ -758,10 +764,11 @@
                 <a href="/2023/11/30/jing-xuan-wen-zhang/">
                     <div class="card-image">
                         
+                        <img src="/images/covers/featured-articles.webp" class="responsive-img" alt="精选文章">
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="精选文章">
                         
                         <span class="card-title">精选文章</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -796,9 +803,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="如何进行分库分表？会带来什么问题？">
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>MySQL</span>
+        
+        <span>2023.11.27</span>
+        
+    </div>
+    <div class="text-cover__title">如何进行分库分表？会带来什么问题？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">如何进行分库分表？会带来什么问题？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1022,7 +1040,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

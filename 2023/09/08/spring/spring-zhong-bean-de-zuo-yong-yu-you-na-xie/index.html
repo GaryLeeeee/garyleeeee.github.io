@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">Spring中Bean的作用域有哪些？</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-2">
+    <div class="text-cover__meta">
+        <span>Spring</span>
+        
+        <span>2023.09.08</span>
+        
     </div>
+    <div class="text-cover__title">Spring中Bean的作用域有哪些？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -417,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -457,7 +463,7 @@
 <li><strong>session</strong>：同一次HTTP session中共享同一个Bean实例</li>
 <li><strong>application</strong>：全局HTTP session中共享同一个Bean实例</li>
 </ul>
-<h2 id="二、Q-amp-A"><a href="#二、Q-amp-A" class="headerlink" title="二、Q&amp;A"></a>二、Q&amp;A</h2><h3 id="1、如何保障线程安全？"><a href="#1、如何保障线程安全？" class="headerlink" title="1、如何保障线程安全？"></a>1、如何保障线程安全？</h3><p><strong>背景</strong>：Spring中Bean的默认作用域是singleton，多个线程访问同一个Bean时会存在线程不安全问题<br><strong>解决</strong>：在类中定义一个ThreadLocal成员变量，将需要的可变成员变量保存在ThreadLocal中（具体可参考<a href="https://garyleeeee.github.io/2023/09/08/concurrent/threadlocal-shi-shi-me-shi-xian-yuan-li-ni/">《ThreadLocal是什么？实现原理呢》</a>）</p>
+<h2 id="二、Q-amp-A"><a href="#二、Q-amp-A" class="headerlink" title="二、Q&amp;A"></a>二、Q&amp;A</h2><h3 id="1、如何保障线程安全？"><a href="#1、如何保障线程安全？" class="headerlink" title="1、如何保障线程安全？"></a>1、如何保障线程安全？</h3><p><strong>背景</strong>：Spring中Bean的默认作用域是singleton，多个线程访问同一个Bean时会存在线程不安全问题<br><strong>解决</strong>：在类中定义一个ThreadLocal成员变量，将需要的可变成员变量保存在ThreadLocal中（具体可参考<a href="/2023/09/08/concurrent/threadlocal-shi-shi-me-shi-xian-yuan-li-ni/" title="《ThreadLocal是什么？实现原理呢》">《ThreadLocal是什么？实现原理呢》</a>）</p>
 
                 
             </div>
@@ -697,9 +703,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="ThreadLocal是什么？实现原理呢？">
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>并发</span>
+        
+        <span>2023.09.08</span>
+        
+    </div>
+    <div class="text-cover__title">ThreadLocal是什么？实现原理呢？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">ThreadLocal是什么？实现原理呢？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -746,9 +763,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Kafka如何解决消息积压问题？">
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>Kafka</span>
+        
+        <span>2023.09.06</span>
+        
+    </div>
+    <div class="text-cover__title">Kafka如何解决消息积压问题？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Kafka如何解决消息积压问题？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -972,7 +1000,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

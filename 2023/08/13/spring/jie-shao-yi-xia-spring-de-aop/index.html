@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">介绍一下Spring的AOP</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-4">
+    <div class="text-cover__meta">
+        <span>Spring</span>
+        
+        <span>2023.08.13</span>
+        
     </div>
+    <div class="text-cover__title">介绍一下Spring的AOP</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -425,7 +431,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -497,14 +503,15 @@
 <li>Spring AOP基于动态代理来实现，致力于解决企业级开发中普遍的AOP需求（方法织入）。默认地，如果使用接口，用JDK提供的动态代理实现，如果没有接口，使用CGLib实现，</li>
 <li>AspectJ AOP基于静态代理来实现，是AOP编程的完全解决方案</li>
 </ul>
-<h3 id="3、JDK动态代理和CGLib动态代理有什么区别？"><a href="#3、JDK动态代理和CGLib动态代理有什么区别？" class="headerlink" title="3、JDK动态代理和CGLib动态代理有什么区别？"></a>3、JDK动态代理和CGLib动态代理有什么区别？</h3><p><a href="https://garyleeeee.github.io/2023/08/12/java-dong-tai-dai-li/">Java动态代理</a></p>
+<h3 id="3、JDK动态代理和CGLib动态代理有什么区别？"><a href="#3、JDK动态代理和CGLib动态代理有什么区别？" class="headerlink" title="3、JDK动态代理和CGLib动态代理有什么区别？"></a>3、JDK动态代理和CGLib动态代理有什么区别？</h3><a href="/2023/08/12/java-dong-tai-dai-li/" title="Java动态代理">Java动态代理</a>
+
 <h3 id="4、什么情况下AOP会生效？"><a href="#4、什么情况下AOP会生效？" class="headerlink" title="4、什么情况下AOP会生效？"></a>4、什么情况下AOP会生效？</h3><ul>
 <li>目标类没有配置为bean</li>
 <li>方法用private修饰（需要改用public）</li>
 <li>切点表达式配置错误</li>
 <li>…<br>//TODO</li>
 </ul>
-<h3 id="5、Spring-AOP是在哪里进行动态代理的？"><a href="#5、Spring-AOP是在哪里进行动态代理的？" class="headerlink" title="5、Spring AOP是在哪里进行动态代理的？"></a>5、Spring AOP是在哪里进行动态代理的？</h3><p>正常的Bean会在Bean生命周期的初始化后，通过<code>BeanPostProcessor.postProcessAfterInitialization</code>创建AOP的动态代理<br>参考：<a href="https://garyleeeee.github.io/2023/08/01/spring/spring-ru-he-jie-jue-xun-huan-yi-lai-de-wen-ti/">Spring如何解决循环依赖的问题？</a></p>
+<h3 id="5、Spring-AOP是在哪里进行动态代理的？"><a href="#5、Spring-AOP是在哪里进行动态代理的？" class="headerlink" title="5、Spring AOP是在哪里进行动态代理的？"></a>5、Spring AOP是在哪里进行动态代理的？</h3><p>正常的Bean会在Bean生命周期的初始化后，通过<code>BeanPostProcessor.postProcessAfterInitialization</code>创建AOP的动态代理<br>参考：<a href="/2023/08/01/spring/spring-ru-he-jie-jue-xun-huan-yi-lai-de-wen-ti/" title="Spring如何解决循环依赖的问题？">Spring如何解决循环依赖的问题？</a></p>
 
                 
             </div>
@@ -752,9 +759,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="如何排查MySQL索引失效的问题？">
+
+<div class="text-cover text-cover--card text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>MySQL</span>
+        
+        <span>2023.08.15</span>
+        
+    </div>
+    <div class="text-cover__title">如何排查MySQL索引失效的问题？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">如何排查MySQL索引失效的问题？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -805,9 +823,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java动态代理">
+
+<div class="text-cover text-cover--card text-cover-palette-2">
+    <div class="text-cover__meta">
+        <span>Java</span>
+        
+        <span>2023.08.12</span>
+        
+    </div>
+    <div class="text-cover__title">Java动态代理</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Java动态代理</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1039,7 +1068,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

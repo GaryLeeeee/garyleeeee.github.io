@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">Redis为什么单线程还这么快？为什么后面又引入多线程？</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-2">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.07</span>
+        
     </div>
+    <div class="text-cover__title">Redis为什么单线程还这么快？为什么后面又引入多线程？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -417,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -449,7 +455,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、Redis为什么单线程还这么快？"><a href="#一、Redis为什么单线程还这么快？" class="headerlink" title="一、Redis为什么单线程还这么快？"></a>一、Redis为什么单线程还这么快？</h2><p>Redis为什么这么快？具体可参考文章<a href="https://garyleeeee.github.io/2023/08/23/redis-wei-shi-me-zhe-me-kuai/">《Redis为什么这么快？》</a></p>
+                <h2 id="一、Redis为什么单线程还这么快？"><a href="#一、Redis为什么单线程还这么快？" class="headerlink" title="一、Redis为什么单线程还这么快？"></a>一、Redis为什么单线程还这么快？</h2><p>Redis为什么这么快？具体可参考文章<a href="/2023/08/23/redis-wei-shi-me-zhe-me-kuai/" title="《Redis为什么这么快？》">《Redis为什么这么快？》</a></p>
 <p>我们可能会有疑问：<strong>单线程不就只能监听单个连接了吗？为什么还能这么快？</strong></p>
 <p>事实上，Redis是通过<strong>IO多路复用</strong>来监听来自客户端的多个连接的（即监听多个socket），它会将需要用到的事件及类型注册到内核中并监听每个事件是否发生。这样做的好处是：不需要创建多余的线程，只需要用单线程就能监听客户端的多个连接，降低了资源的消耗。</p>
 <p><strong>文件事件处理器</strong>主要包含4个部分：</p>
@@ -712,9 +718,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Redis如何做性能优化？">
+
+<div class="text-cover text-cover--card text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.08</span>
+        
+    </div>
+    <div class="text-cover__title">Redis如何做性能优化？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Redis如何做性能优化？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -753,9 +770,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Redis有哪几种数据类型？分别有什么应用场景？">
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.07</span>
+        
+    </div>
+    <div class="text-cover__title">Redis有哪几种数据类型？分别有什么应用场景？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Redis有哪几种数据类型？分别有什么应用场景？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -979,7 +1007,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             

@@ -268,17 +268,23 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">Redis如何做性能优化？</h1>
-                </div>
-            </div>
-        </div>
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.08</span>
+        
     </div>
+    <div class="text-cover__title">Redis如何做性能优化？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
 </div>
+
+</div>
+
 
 
 
@@ -417,7 +423,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2026-07-31
+                    2026-09-20
                 </div>
                 
 
@@ -456,9 +462,9 @@
 <li><strong>管道pipeline传输</strong>：对于不支持批量操作的命令，我们可以使用<code>pipeline</code>打包命令（但没办法保证原子性）</li>
 <li><strong>Lua脚本</strong>：一段Lua脚本可以视为一条命令执行，所以它保证了原子性（但要注意Redis Cluster下无法保证，同时执行异常也无法回滚）</li>
 </ul>
-<h3 id="2、大key问题"><a href="#2、大key问题" class="headerlink" title="2、大key问题"></a>2、大key问题</h3><p>具体可参考文章<a href="https://garyleeeee.github.io/2023/08/19/redis/ru-he-chu-li-redis-de-da-key-wen-ti/">《如何处理Redis的大key问题？》</a></p>
-<h3 id="3、缓存雪崩、缓存穿透问题"><a href="#3、缓存雪崩、缓存穿透问题" class="headerlink" title="3、缓存雪崩、缓存穿透问题"></a>3、缓存雪崩、缓存穿透问题</h3><p>具体可参考文章<a href="https://garyleeeee.github.io/2023/07/24/guan-yu-dui-huan-cun-xue-beng-he-huan-cun-chuan-tou-de-li-jie-yi-ji-ru-he-bi-mian/">《关于对缓存雪崩和缓存穿透的理解，以及如何避免？》</a></p>
-<h3 id="4、热key问题"><a href="#4、热key问题" class="headerlink" title="4、热key问题"></a>4、热key问题</h3><p>具体可参考文章<a href="https://garyleeeee.github.io/2023/09/12/redis/ru-he-jie-jue-redis-de-re-dian-key-wen-ti/">《如何解决Redis的热点key问题？》</a></p>
+<h3 id="2、大key问题"><a href="#2、大key问题" class="headerlink" title="2、大key问题"></a>2、大key问题</h3><p>具体可参考文章<a href="/2023/08/19/redis/ru-he-chu-li-redis-de-da-key-wen-ti/" title="《如何处理Redis的大key问题？》">《如何处理Redis的大key问题？》</a></p>
+<h3 id="3、缓存雪崩、缓存穿透问题"><a href="#3、缓存雪崩、缓存穿透问题" class="headerlink" title="3、缓存雪崩、缓存穿透问题"></a>3、缓存雪崩、缓存穿透问题</h3><p>具体可参考文章<a href="/2023/07/24/guan-yu-dui-huan-cun-xue-beng-he-huan-cun-chuan-tou-de-li-jie-yi-ji-ru-he-bi-mian/" title="《关于对缓存雪崩和缓存穿透的理解，以及如何避免？》">《关于对缓存雪崩和缓存穿透的理解，以及如何避免？》</a></p>
+<h3 id="4、热key问题"><a href="#4、热key问题" class="headerlink" title="4、热key问题"></a>4、热key问题</h3><p>具体可参考文章<a href="/2023/09/12/redis/ru-he-jie-jue-redis-de-re-dian-key-wen-ti/" title="《如何解决Redis的热点key问题？》">《如何解决Redis的热点key问题？》</a></p>
 <h3 id="5、慢查询问题"><a href="#5、慢查询问题" class="headerlink" title="5、慢查询问题"></a>5、慢查询问题</h3><p>我们应该减少一些慢查询命令，他们的时间复杂度是O(n)，可能会导致全表扫描，比如：</p>
 <ul>
 <li><code>KEYS *</code></li>
@@ -719,9 +725,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Redis有哪几种常用的缓存读写策略？">
+
+<div class="text-cover text-cover--card text-cover-palette-4">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.08</span>
+        
+    </div>
+    <div class="text-cover__title">Redis有哪几种常用的缓存读写策略？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Redis有哪几种常用的缓存读写策略？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -760,9 +777,20 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Redis为什么单线程还这么快？为什么后面又引入多线程？">
+
+<div class="text-cover text-cover--card text-cover-palette-2">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.07</span>
+        
+    </div>
+    <div class="text-cover__title">Redis为什么单线程还这么快？为什么后面又引入多线程？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
                         
-                        <span class="card-title">Redis为什么单线程还这么快？为什么后面又引入多线程？</span>
+                        
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -986,7 +1014,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">137.7k</span>&nbsp;字
+                class="white-color">142.7k</span>&nbsp;字
             
             
             
