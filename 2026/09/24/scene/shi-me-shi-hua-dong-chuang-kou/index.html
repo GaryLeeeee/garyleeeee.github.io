@@ -1,0 +1,1612 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="什么是滑动窗口？, GaryLee">
+    <meta name="description" content="记录自己的学习笔记">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>什么是滑动窗口？ | GaryLee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">GaryLee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">GaryLee</div>
+        <div class="logo-desc">
+            
+            记录自己的学习笔记
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/GaryLeeeee" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Follow Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/GaryLeeeee" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Follow Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-5">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2026.09.24</span>
+        
+    </div>
+    <div class="text-cover__title">什么是滑动窗口？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+</div>
+
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%9C%BA%E6%99%AF%E9%A2%98/">
+                                <span class="chip bg-color">场景题</span>
+                            </a>
+                        
+                            <a href="/tags/Golang/">
+                                <span class="chip bg-color">Golang</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%99%90%E6%B5%81/">
+                                <span class="chip bg-color">限流</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
+                                场景题
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-09-24
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2026-09-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.5k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>滑动窗口是一种只处理“最近一段有效范围”的思路，并不只用于算法题。</p>
+<p>系统会不断产生新请求、新订单和新日志。新数据进入窗口，过期数据离开窗口，系统只根据窗口内的数据做判断。</p>
+<p>例如：</p>
+<ul>
+<li>一个用户最近1分钟请求了多少次？</li>
+<li>一个手机号最近24小时发送了多少次验证码？</li>
+<li>一个接口最近5分钟的错误率是多少？</li>
+<li>一台设备最近100次采样是否持续异常？</li>
+</ul>
+<p>这些问题虽然业务不同，但处理方式相似，都可以使用滑动窗口。</p>
+<h2 id="一、滑动窗口解决什么问题？"><a href="#一、滑动窗口解决什么问题？" class="headerlink" title="一、滑动窗口解决什么问题？"></a>一、滑动窗口解决什么问题？</h2><p>假设接口限制每个用户一分钟最多请求100次。</p>
+<p>最简单的做法是按自然分钟计数：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">12:00:00 ~ 12:00:59 记录一个计数
+12:01:00 ~ 12:01:59 重新开始计数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这种固定时间段会有临界问题：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">12:00:59 收到100次请求
+12:01:00 又收到100次请求<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>两个自然分钟都没有超过限制，但系统可能在1秒左右收到200次请求。</p>
+<p>滑动窗口不会只看当前是哪个自然分钟，而是每次都统计“当前时间往前一分钟”的请求：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">当前时间：12:01:00
+统计范围：12:00:00 ~ 12:01:00<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><code>12:00:59</code>发生的请求仍然有效，所以第二批请求会受到限制。</p>
+<p>可以把它理解成一扇不断向前移动的窗户：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">过去的数据                 当前时间
+    [  已过期  ][  当前窗口  ]
+                  -&gt; 窗口持续向前移动<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>窗口每次移动时只做三件事：</p>
+<ol>
+<li>移除已经过期的数据。</li>
+<li>加入刚刚发生的数据。</li>
+<li>根据窗口内的数据计算结果并执行对应动作。</li>
+</ol>
+<h2 id="二、使用前先明确四件事"><a href="#二、使用前先明确四件事" class="headerlink" title="二、使用前先明确四件事"></a>二、使用前先明确四件事</h2><p>滑动窗口只是处理思路，真正落地前要先明确下面四项。</p>
+<h3 id="1、按什么维度统计？"><a href="#1、按什么维度统计？" class="headerlink" title="1、按什么维度统计？"></a>1、按什么维度统计？</h3><p>限流和风控不能只定义“一分钟100次”，还要说明限制谁：</p>
+<ul>
+<li>按用户ID限制。</li>
+<li>按IP限制。</li>
+<li>按设备限制。</li>
+<li>按手机号限制。</li>
+<li>按接口限制。</li>
+<li>按用户和接口组合限制。</li>
+</ul>
+<p>例如，同一个用户访问不同接口，可能需要分别计数。</p>
+<h3 id="2、窗口有多长？"><a href="#2、窗口有多长？" class="headerlink" title="2、窗口有多长？"></a>2、窗口有多长？</h3><p>窗口长度要根据问题决定：</p>
+<ul>
+<li>接口防刷可能看最近1秒或1分钟。</li>
+<li>登录失败可能看最近10分钟。</li>
+<li>短信发送可能同时看最近1分钟和最近24小时。</li>
+<li>监控告警可能看最近5分钟。</li>
+</ul>
+<p>窗口越短，反应越快；窗口越长，结果越稳定，但需要维护的数据也更多。</p>
+<h3 id="3、窗口内统计什么？"><a href="#3、窗口内统计什么？" class="headerlink" title="3、窗口内统计什么？"></a>3、窗口内统计什么？</h3><p>常见的统计值包括：</p>
+<ul>
+<li>请求次数。</li>
+<li>失败次数。</li>
+<li>错误率。</li>
+<li>订单数和成交额。</li>
+<li>不同用户数量。</li>
+<li>平均值、最大值或最小值。</li>
+</ul>
+<p>统计活跃用户时还要去重，不能简单地把访问次数当作用户数。</p>
+<h3 id="4、超过条件后怎么处理？"><a href="#4、超过条件后怎么处理？" class="headerlink" title="4、超过条件后怎么处理？"></a>4、超过条件后怎么处理？</h3><p>超过阈值不一定都是直接拒绝，也可以：</p>
+<ul>
+<li>返回“操作频繁，请稍后重试”。</li>
+<li>要求输入验证码。</li>
+<li>暂时锁定账号。</li>
+<li>对非核心功能降级。</li>
+<li>触发告警。</li>
+<li>将请求放入队列稍后处理。</li>
+</ul>
+<h2 id="三、常见业务场景"><a href="#三、常见业务场景" class="headerlink" title="三、常见业务场景"></a>三、常见业务场景</h2><table>
+<thead>
+<tr>
+<th>业务需求</th>
+<th>窗口范围</th>
+<th>维护的数据</th>
+<th>处理动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>接口限流</td>
+<td>最近1分钟</td>
+<td>用户或IP的请求次数</td>
+<td>拒绝、排队或降级</td>
+</tr>
+<tr>
+<td>短信防刷</td>
+<td>最近1分钟、24小时</td>
+<td>手机号、IP的发送次数</td>
+<td>拒绝发送或触发风控</td>
+</tr>
+<tr>
+<td>登录保护</td>
+<td>最近10分钟</td>
+<td>账号、设备或IP的失败次数</td>
+<td>验证码或暂时锁定</td>
+</tr>
+<tr>
+<td>监控告警</td>
+<td>最近5分钟</td>
+<td>请求总数、失败数和耗时</td>
+<td>超过阈值时告警</td>
+</tr>
+<tr>
+<td>实时统计</td>
+<td>最近30分钟</td>
+<td>订单数、成交额或活跃事件</td>
+<td>更新看板和趋势数据</td>
+</tr>
+<tr>
+<td>设备监控</td>
+<td>最近100次采样</td>
+<td>温度、延迟等指标</td>
+<td>连续异常时告警</td>
+</tr>
+</tbody></table>
+<h3 id="1、接口限流"><a href="#1、接口限流" class="headerlink" title="1、接口限流"></a>1、接口限流</h3><p>接口限流是最常见的滑动窗口场景。</p>
+<p>例如，订单查询接口限制同一用户一分钟最多请求100次。每次请求到来时：</p>
+<ol>
+<li>找到该用户的请求窗口。</li>
+<li>删除一分钟以前的记录。</li>
+<li>判断剩余记录是否已经达到100次。</li>
+<li>未达到则放行并记录本次请求，达到则拒绝。</li>
+</ol>
+<p>相比固定时间段计数，滑动窗口能够减少临界时间内的突发流量。</p>
+<p>滑动窗口只是限流方案之一。漏桶、令牌桶等方案的区别，可以参考<a href="/2023/07/19/ru-he-xian-liu/" title="如何限流？">如何限流？</a>。</p>
+<h3 id="2、短信和操作防刷"><a href="#2、短信和操作防刷" class="headerlink" title="2、短信和操作防刷"></a>2、短信和操作防刷</h3><p>短信验证码、发布动态、发表评论等操作通常会同时设置多个窗口：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">同一手机号60秒内只能发送1次验证码
+同一手机号24小时内最多发送10次验证码
+同一IP一分钟内最多发送20次验证码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>任何一个窗口超过阈值，都可以拒绝请求或进入额外校验。</p>
+<p>只按手机号限制不够，因为攻击者可能不断更换手机号；只按IP限制也可能误伤共享网络下的正常用户。实际使用时通常会组合用户、手机号、设备和IP等维度。</p>
+<h3 id="3、登录风控"><a href="#3、登录风控" class="headerlink" title="3、登录风控"></a>3、登录风控</h3><p>系统可以统计同一账号或IP最近10分钟的登录失败次数：</p>
+<ul>
+<li>少于5次：允许继续尝试。</li>
+<li>达到5次：要求输入验证码。</li>
+<li>继续失败：暂时锁定账号或限制该IP。</li>
+</ul>
+<p>新失败记录进入窗口，10分钟以前的记录自动过期。相比永久累加失败次数，这种方式不会让很久以前的偶发失败一直影响用户。</p>
+<h3 id="4、监控和告警"><a href="#4、监控和告警" class="headerlink" title="4、监控和告警"></a>4、监控和告警</h3><p>监控系统可以维护最近5分钟的请求总数和失败数：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">错误率 = 最近5分钟失败数 / 最近5分钟请求总数<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当错误率连续超过阈值时再告警，可以及时发现故障，也能避免一次偶发失败立即触发告警。</p>
+<p>实际判断时还要设置最小请求量。例如最近5分钟只有1次请求且刚好失败，错误率虽然是100%，但样本太少，不一定代表服务发生故障。</p>
+<h3 id="5、实时统计"><a href="#5、实时统计" class="headerlink" title="5、实时统计"></a>5、实时统计</h3><p>运营看板经常需要展示：</p>
+<ul>
+<li>最近30分钟的订单数量和成交额。</li>
+<li>最近24小时的活跃用户数。</li>
+<li>最近100笔订单的平均金额。</li>
+<li>最近一分钟的消息消费速度。</li>
+</ul>
+<p>窗口移动时，只需要增加新数据、扣除过期数据，不必每次重新扫描全部历史记录。</p>
+<h2 id="四、Golang实现单机限流"><a href="#四、Golang实现单机限流" class="headerlink" title="四、Golang实现单机限流"></a>四、Golang实现单机限流</h2><p>下面实现一个简单的单机限流器：一分钟最多允许3次请求。</p>
+<p>它使用切片保存请求时间，每次请求到来时先清理过期记录，再决定是否放行。</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"sync"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> SlidingWindowLimiter <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	mu       sync<span class="token punctuation">.</span>Mutex
+	limit    <span class="token builtin">int</span>
+	window   time<span class="token punctuation">.</span>Duration
+	requests <span class="token punctuation">[</span><span class="token punctuation">]</span>time<span class="token punctuation">.</span>Time
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">NewSlidingWindowLimiter</span><span class="token punctuation">(</span>limit <span class="token builtin">int</span><span class="token punctuation">,</span> window time<span class="token punctuation">.</span>Duration<span class="token punctuation">)</span> <span class="token operator">*</span>SlidingWindowLimiter <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>SlidingWindowLimiter<span class="token punctuation">{</span>
+		limit<span class="token punctuation">:</span>  limit<span class="token punctuation">,</span>
+		window<span class="token punctuation">:</span> window<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>l <span class="token operator">*</span>SlidingWindowLimiter<span class="token punctuation">)</span> <span class="token function">Allow</span><span class="token punctuation">(</span>now time<span class="token punctuation">.</span>Time<span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+	l<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> l<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	cutoff <span class="token operator">:=</span> now<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token operator">-</span>l<span class="token punctuation">.</span>window<span class="token punctuation">)</span>
+	firstValid <span class="token operator">:=</span> <span class="token number">0</span>
+
+	<span class="token comment">// 移除窗口外的请求记录。</span>
+	<span class="token keyword">for</span> firstValid <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>l<span class="token punctuation">.</span>requests<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>l<span class="token punctuation">.</span>requests<span class="token punctuation">[</span>firstValid<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">After</span><span class="token punctuation">(</span>cutoff<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		firstValid<span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+	l<span class="token punctuation">.</span>requests <span class="token operator">=</span> l<span class="token punctuation">.</span>requests<span class="token punctuation">[</span>firstValid<span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>l<span class="token punctuation">.</span>requests<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> l<span class="token punctuation">.</span>limit <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span>
+	<span class="token punctuation">}</span>
+
+	l<span class="token punctuation">.</span>requests <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>l<span class="token punctuation">.</span>requests<span class="token punctuation">,</span> now<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	limiter <span class="token operator">:=</span> <span class="token function">NewSlidingWindowLimiter</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>Minute<span class="token punctuation">)</span>
+	start <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Date</span><span class="token punctuation">(</span><span class="token number">2026</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>UTC<span class="token punctuation">)</span>
+
+	requestTimes <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>time<span class="token punctuation">.</span>Duration<span class="token punctuation">{</span>
+		<span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token number">10</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		<span class="token number">20</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		<span class="token number">30</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+		<span class="token number">61</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> elapsed <span class="token operator">:=</span> <span class="token keyword">range</span> requestTimes <span class="token punctuation">{</span>
+		allowed <span class="token operator">:=</span> limiter<span class="token punctuation">.</span><span class="token function">Allow</span><span class="token punctuation">(</span>start<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>elapsed<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"第%2d秒，是否允许：%t\n"</span><span class="token punctuation">,</span> <span class="token function">int</span><span class="token punctuation">(</span>elapsed<span class="token punctuation">.</span><span class="token function">Seconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> allowed<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">第 0秒，是否允许：true
+第10秒，是否允许：true
+第20秒，是否允许：true
+第30秒，是否允许：false
+第61秒，是否允许：true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>前三次请求进入一分钟窗口，第四次请求被拒绝。第61秒时，最早的一次请求已经过期，所以新请求可以进入。</p>
+<p>这里使用<code>sync.Mutex</code>是因为多个Goroutine可能同时调用<code>Allow</code>。如果不加锁，检查次数和写入记录之间可能发生并发问题，导致实际放行数量超过限制。</p>
+<h2 id="五、Golang统计最近错误率"><a href="#五、Golang统计最近错误率" class="headerlink" title="五、Golang统计最近错误率"></a>五、Golang统计最近错误率</h2><p>滑动窗口不只能限流，也可以用来计算接口最近一段时间的错误率。</p>
+<p>下面的示例保存最近5分钟的请求结果。新结果进入时，会同时移除过期结果并更新失败数量。</p>
+<pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"sync"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> RequestResult <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	at     time<span class="token punctuation">.</span>Time
+	failed <span class="token builtin">bool</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> ErrorRateWindow <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	mu           sync<span class="token punctuation">.</span>Mutex
+	window       time<span class="token punctuation">.</span>Duration
+	results      <span class="token punctuation">[</span><span class="token punctuation">]</span>RequestResult
+	failureCount <span class="token builtin">int</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">NewErrorRateWindow</span><span class="token punctuation">(</span>window time<span class="token punctuation">.</span>Duration<span class="token punctuation">)</span> <span class="token operator">*</span>ErrorRateWindow <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token operator">&amp;</span>ErrorRateWindow<span class="token punctuation">{</span>window<span class="token punctuation">:</span> window<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>w <span class="token operator">*</span>ErrorRateWindow<span class="token punctuation">)</span> <span class="token function">Record</span><span class="token punctuation">(</span>now time<span class="token punctuation">.</span>Time<span class="token punctuation">,</span> failed <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">float64</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	w<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> w<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	cutoff <span class="token operator">:=</span> now<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token operator">-</span>w<span class="token punctuation">.</span>window<span class="token punctuation">)</span>
+	firstValid <span class="token operator">:=</span> <span class="token number">0</span>
+
+	<span class="token keyword">for</span> firstValid <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span>results<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>w<span class="token punctuation">.</span>results<span class="token punctuation">[</span>firstValid<span class="token punctuation">]</span><span class="token punctuation">.</span>at<span class="token punctuation">.</span><span class="token function">After</span><span class="token punctuation">(</span>cutoff<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> w<span class="token punctuation">.</span>results<span class="token punctuation">[</span>firstValid<span class="token punctuation">]</span><span class="token punctuation">.</span>failed <span class="token punctuation">{</span>
+			w<span class="token punctuation">.</span>failureCount<span class="token operator">--</span>
+		<span class="token punctuation">}</span>
+		firstValid<span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+	w<span class="token punctuation">.</span>results <span class="token operator">=</span> w<span class="token punctuation">.</span>results<span class="token punctuation">[</span>firstValid<span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+	w<span class="token punctuation">.</span>results <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span>results<span class="token punctuation">,</span> RequestResult<span class="token punctuation">{</span>at<span class="token punctuation">:</span> now<span class="token punctuation">,</span> failed<span class="token punctuation">:</span> failed<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token keyword">if</span> failed <span class="token punctuation">{</span>
+		w<span class="token punctuation">.</span>failureCount<span class="token operator">++</span>
+	<span class="token punctuation">}</span>
+
+	total <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span>results<span class="token punctuation">)</span>
+	errorRate <span class="token operator">:=</span> <span class="token function">float64</span><span class="token punctuation">(</span>w<span class="token punctuation">.</span>failureCount<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">float64</span><span class="token punctuation">(</span>total<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> total<span class="token punctuation">,</span> errorRate
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	window <span class="token operator">:=</span> <span class="token function">NewErrorRateWindow</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Minute<span class="token punctuation">)</span>
+	start <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Date</span><span class="token punctuation">(</span><span class="token number">2026</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>UTC<span class="token punctuation">)</span>
+
+	samples <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token keyword">struct</span> <span class="token punctuation">{</span>
+		after  time<span class="token punctuation">.</span>Duration
+		failed <span class="token builtin">bool</span>
+	<span class="token punctuation">}</span><span class="token punctuation">{</span>
+		<span class="token punctuation">{</span>after<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> failed<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>after<span class="token punctuation">:</span> time<span class="token punctuation">.</span>Minute<span class="token punctuation">,</span> failed<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>after<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Minute<span class="token punctuation">,</span> failed<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>after<span class="token punctuation">:</span> <span class="token number">6</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Minute<span class="token punctuation">,</span> failed<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> sample <span class="token operator">:=</span> <span class="token keyword">range</span> samples <span class="token punctuation">{</span>
+		total<span class="token punctuation">,</span> errorRate <span class="token operator">:=</span> window<span class="token punctuation">.</span><span class="token function">Record</span><span class="token punctuation">(</span>start<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>sample<span class="token punctuation">.</span>after<span class="token punctuation">)</span><span class="token punctuation">,</span> sample<span class="token punctuation">.</span>failed<span class="token punctuation">)</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"第%d分钟：窗口内%d次请求，错误率%.1f%%\n"</span><span class="token punctuation">,</span>
+			<span class="token function">int</span><span class="token punctuation">(</span>sample<span class="token punctuation">.</span>after<span class="token punctuation">.</span><span class="token function">Minutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> total<span class="token punctuation">,</span> errorRate<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">第0分钟：窗口内1次请求，错误率0.0%
+第1分钟：窗口内2次请求，错误率50.0%
+第2分钟：窗口内3次请求，错误率66.7%
+第6分钟：窗口内2次请求，错误率50.0%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到了第6分钟，第0分钟和第1分钟的数据已经离开5分钟窗口，因此结果只根据仍然有效的数据计算。</p>
+<p>生产中的告警一般还会增加两个条件：</p>
+<ul>
+<li>窗口内请求数达到最小样本量。</li>
+<li>错误率连续多个窗口超过阈值。</li>
+</ul>
+<p>这样可以减少小流量和偶发错误造成的误报。</p>
+<h2 id="六、生产环境怎么实现？"><a href="#六、生产环境怎么实现？" class="headerlink" title="六、生产环境怎么实现？"></a>六、生产环境怎么实现？</h2><p>前面的代码主要用于理解思路。实际项目要根据请求量、部署方式和精度要求选择实现。</p>
+<h3 id="1、保存每条事件"><a href="#1、保存每条事件" class="headerlink" title="1、保存每条事件"></a>1、保存每条事件</h3><p>像示例一样保存每次请求的时间。</p>
+<ul>
+<li>优点：判断准确，实现直观。</li>
+<li>缺点：请求量越大，保存的数据越多。</li>
+<li>适合：单机、小流量、高精度场景。</li>
+</ul>
+<h3 id="2、按时间分桶"><a href="#2、按时间分桶" class="headerlink" title="2、按时间分桶"></a>2、按时间分桶</h3><p>把一分钟拆成60个一秒小桶，每个桶只保存请求数：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">[12:00:01 -&gt; 3次] [12:00:02 -&gt; 8次] [12:00:03 -&gt; 5次]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>统计时累加当前一分钟内的桶。</p>
+<ul>
+<li>优点：不需要保存每一次请求，内存占用更低。</li>
+<li>缺点：结果精度取决于桶的大小。</li>
+<li>适合：高流量的限流、监控和指标统计。</li>
+</ul>
+<h3 id="3、使用共享存储"><a href="#3、使用共享存储" class="headerlink" title="3、使用共享存储"></a>3、使用共享存储</h3><p>服务有多个实例时，只保存在本机内存会导致每台机器分别计数，实际总量可能超过限制。</p>
+<p>这时需要把窗口状态放到所有实例都能访问的位置，并保证“清理、统计、写入”是一组不可被打断的操作。常见做法是使用Redis或统一的限流组件。</p>
+<p>还需要统一时间来源、设置数据过期时间，并考虑共享存储不可用时是放行还是拒绝。</p>
+<h3 id="4、使用现成组件"><a href="#4、使用现成组件" class="headerlink" title="4、使用现成组件"></a>4、使用现成组件</h3><p>网关限流、服务保护和监控统计通常已有成熟组件。业务只需要配置统计维度、窗口长度、阈值和处理动作，不一定要自己维护完整实现。</p>
+<h2 id="七、常见问题"><a href="#七、常见问题" class="headerlink" title="七、常见问题"></a>七、常见问题</h2><h3 id="1、把固定时间段当成滑动窗口"><a href="#1、把固定时间段当成滑动窗口" class="headerlink" title="1、把固定时间段当成滑动窗口"></a>1、把固定时间段当成滑动窗口</h3><p>按自然分钟清零是固定窗口。每次都统计“当前时间往前一分钟”才是滑动窗口。</p>
+<h3 id="2、统计维度太粗"><a href="#2、统计维度太粗" class="headerlink" title="2、统计维度太粗"></a>2、统计维度太粗</h3><p>整个接口共用一个计数可能让少数用户占满额度。需要根据业务选择用户、IP、设备或组合维度。</p>
+<h3 id="3、只记录新数据，不清理旧数据"><a href="#3、只记录新数据，不清理旧数据" class="headerlink" title="3、只记录新数据，不清理旧数据"></a>3、只记录新数据，不清理旧数据</h3><p>过期数据不清理会让统计越来越大，也会造成内存持续增长。</p>
+<h3 id="4、多实例各自统计"><a href="#4、多实例各自统计" class="headerlink" title="4、多实例各自统计"></a>4、多实例各自统计</h3><p>单机限流器只保护当前进程。服务扩容后，如果仍然各自计数，就要重新计算每台机器的额度，或者改为共享计数。</p>
+<h3 id="5、忽略最小样本量"><a href="#5、忽略最小样本量" class="headerlink" title="5、忽略最小样本量"></a>5、忽略最小样本量</h3><p>错误率、成功率等比例指标在样本很少时容易误导。除了比例，还要同时检查窗口内的总数量。</p>
+<h3 id="6、窗口越精确，成本越高"><a href="#6、窗口越精确，成本越高" class="headerlink" title="6、窗口越精确，成本越高"></a>6、窗口越精确，成本越高</h3><p>保存每条事件最准确，但占用更多存储。时间分桶更节省资源，但会牺牲一部分精度。选择时要看业务是否真的需要精确到每一次请求。</p>
+<h2 id="八、什么时候适合使用？"><a href="#八、什么时候适合使用？" class="headerlink" title="八、什么时候适合使用？"></a>八、什么时候适合使用？</h2><p>满足下面几个特点时，可以考虑滑动窗口：</p>
+<ol>
+<li>只关心最近一段时间或最近一批数据。</li>
+<li>新数据会不断进入，旧数据会不断失效。</li>
+<li>加入和移除一条数据后，可以快速更新统计结果。</li>
+<li>需要根据当前范围内的结果立即限流、告警或调整策略。</li>
+</ol>
+<p>如果需要查询任意历史时间段，或者每次都要进行复杂的明细分析，直接查询统计系统、数据库或离线任务可能更合适。</p>
+<p>一句话总结：滑动窗口就是让系统只关注“当前仍然有效的数据”，并随着时间向前持续更新判断结果。</p>
+<h2 id="相关案例"><a href="#相关案例" class="headerlink" title="相关案例"></a>相关案例</h2><ul>
+<li><a href="/2023/07/19/ru-he-xian-liu/" title="如何限流？">如何限流？</a></li>
+<li><a href="/2023/07/17/ru-he-she-ji-yi-ge-miao-sha-xi-tong/" title="如何设计一个秒杀系统？">如何设计一个秒杀系统？</a></li>
+<li><a href="/2023/11/27/scene/ru-he-jie-jue-duan-xin-yan-zheng-ma-jie-kou-bei-kuang-shua-dao-zhi-xi-tong-beng-kui-de-wen-ti/" title="如何解决短信验证码接口被狂刷导致系统崩溃的问题？">如何解决短信验证码接口被狂刷导致系统崩溃的问题？</a></li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">GaryLee</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://garyleeeee.github.io/2026/09/24/scene/shi-me-shi-hua-dong-chuang-kou/">https://garyleeeee.github.io/2026/09/24/scene/shi-me-shi-hua-dong-chuang-kou/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">GaryLee</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%9C%BA%E6%99%AF%E9%A2%98/">
+                                    <span class="chip bg-color">场景题</span>
+                                </a>
+                            
+                                <a href="/tags/Golang/">
+                                    <span class="chip bg-color">Golang</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%99%90%E6%B5%81/">
+                                    <span class="chip bg-color">限流</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/null" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/null" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/09/24/scene/shi-me-shi-hua-dong-chuang-kou/">
+                    <div class="card-image">
+                        
+                        
+
+<div class="text-cover text-cover--card text-cover-palette-5">
+    <div class="text-cover__meta">
+        <span>场景题</span>
+        
+        <span>2026.09.24</span>
+        
+    </div>
+    <div class="text-cover__title">什么是滑动窗口？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                        
+                        
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-09-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%9C%BA%E6%99%AF%E9%A2%98/" class="post-category">
+                                    场景题
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9C%BA%E6%99%AF%E9%A2%98/">
+                        <span class="chip bg-color">场景题</span>
+                    </a>
+                    
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%99%90%E6%B5%81/">
+                        <span class="chip bg-color">限流</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/09/23/golang/go-zhong-channel-select-he-waitgroup-you-shi-me-qu-bie/">
+                    <div class="card-image">
+                        
+                        
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>Golang</span>
+        
+        <span>2026.09.23</span>
+        
+    </div>
+    <div class="text-cover__title">Go中Channel、Select和WaitGroup有什么区别？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                        
+                        
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Golang/" class="post-category">
+                                    Golang
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
+                    </a>
+                    
+                    <a href="/tags/Channel/">
+                        <span class="chip bg-color">Channel</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2026</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">GaryLee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">151.2k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/GaryLeeeee" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:664306561@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=664306561" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 664306561" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
