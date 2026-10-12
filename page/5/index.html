@@ -320,6 +320,128 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/10/30/concurrent/tu-jie-aqs-yuan-li-reentrantlock-shi-xian/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>并发</span>
+        
+        <span>2023.10.30</span>
+        
+    </div>
+    <div class="text-cover__title">图解AQS原理（ReentrantLock实现）</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是AQS？具体可参考文章《什么是AQS？》
+二、AQS原理在AQS内部，维护了：
+
+state变量：用volatile int修饰，当state大于0的时候说明对象锁已经被占有了，state的修改动作是通过CAS来完成的
+等待队列：
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-30
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B9%B6%E5%8F%91/" class="post-category">
+                                    并发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/AQS/">
+                            <span class="chip bg-color">AQS</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/10/29/concurrent/shi-me-shi-aqs/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>并发</span>
+        
+        <span>2023.10.29</span>
+        
+    </div>
+    <div class="text-cover__title">什么是AQS？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是AQS？AQS也就是AbstractQueuedSynchronizer（抽象队列同步器），放在java.util.concurrent.locks包下。
+AQS是一个抽象类，大概定义如下：
+public abstract cla
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-29
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B9%B6%E5%8F%91/" class="post-category">
+                                    并发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/AQS/">
+                            <span class="chip bg-color">AQS</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/10/27/concurrent/shi-me-shi-volatile-neng-bao-zheng-yuan-zi-xing-ma/">
                         <div class="card-image">
                             
@@ -903,134 +1025,6 @@ int
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/10/20/concurrent/xian-cheng-chi-gong-zuo-yuan-li/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-4">
-    <div class="text-cover__meta">
-        <span>并发</span>
-        
-        <span>2023.10.20</span>
-        
-    </div>
-    <div class="text-cover__title">线程池工作原理</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是线程池？具体可参考《线程池学习笔记》
-二、举个栗子（用比喻的方式解释线程池工作原理）1、相关名词
-
-
-线程池
-开发部门
-
-
-
-核心线程
-正式员工（长期存在）
-
-
-非核心线程
-非正式员工（如外包员工，需要才用到）
-
-
-执行任务
-开发
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-20
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B9%B6%E5%8F%91/" class="post-category">
-                                    并发
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-                            <span class="chip bg-color">线程池</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/10/19/java/object-lei-de-equals-he-hashcode-fang-fa-you-shi-me-yong/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-0">
-    <div class="text-cover__meta">
-        <span>Java</span>
-        
-        <span>2023.10.19</span>
-        
-    </div>
-    <div class="text-cover__title">Object类的equals和hashCode方法有什么用？</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、背景众所周知，在Java中Object类是所有类的父类，也就是说所有类都会有equals和hashCode方法。
-二、equals()方法1、代码实现public boolean equals(Object obj) {
-    ret
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1133,7 +1127,7 @@ int
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">157.2k</span>&nbsp;字
             
             
             

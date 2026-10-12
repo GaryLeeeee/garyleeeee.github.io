@@ -320,6 +320,112 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/11/13/redis/wei-shi-me-lua-jiao-ben-ke-yi-bao-zheng-yuan-zi-xing/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-3">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.13</span>
+        
+    </div>
+    <div class="text-cover__title">为什么Lua脚本可以保证原子性？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是原子性？原子性这个概念在数据库中和在并发编程中是两种不同的概念：
+
+数据库中的原子性：要么都执行，要么都不执行
+并发编程中的原子性：操作不可拆分、不被中断
+
+Lua脚本是属于并发编程中的原子性，可以保证原子性，但是不能保证要么都执
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/11/13/redis/shi-me-shi-redis-de-shu-ju-fen-pian/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-4">
+    <div class="text-cover__meta">
+        <span>Redis</span>
+        
+        <span>2023.11.13</span>
+        
+    </div>
+    <div class="text-cover__title">什么是Redis的数据分片？</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、什么是Redis的数据分片？Redis的数据分片（Sharding）指的是将数据集分为多个子集，分别存储在不同的Redis节点上，提高了Redis集群的性能和扩展性。
+二、如何实现Redis的数据分片？Redis的数据分片实现一般是按照
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/11/13/scene/ru-he-bao-zheng-gao-bing-fa-xia-de-zhi-bo-song-li-neng-gou-kuai-su-wan-cheng/">
                         <div class="card-image">
                             
@@ -854,128 +960,6 @@ Zset（有序集合）：有序、不重复
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/10/30/concurrent/tu-jie-aqs-yuan-li-reentrantlock-shi-xian/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-0">
-    <div class="text-cover__meta">
-        <span>并发</span>
-        
-        <span>2023.10.30</span>
-        
-    </div>
-    <div class="text-cover__title">图解AQS原理（ReentrantLock实现）</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是AQS？具体可参考文章《什么是AQS？》
-二、AQS原理在AQS内部，维护了：
-
-state变量：用volatile int修饰，当state大于0的时候说明对象锁已经被占有了，state的修改动作是通过CAS来完成的
-等待队列：
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-30
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B9%B6%E5%8F%91/" class="post-category">
-                                    并发
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/AQS/">
-                            <span class="chip bg-color">AQS</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/10/29/concurrent/shi-me-shi-aqs/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-1">
-    <div class="text-cover__meta">
-        <span>并发</span>
-        
-        <span>2023.10.29</span>
-        
-    </div>
-    <div class="text-cover__title">什么是AQS？</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是AQS？AQS也就是AbstractQueuedSynchronizer（抽象队列同步器），放在java.util.concurrent.locks包下。
-AQS是一个抽象类，大概定义如下：
-public abstract cla
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-29
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E5%B9%B6%E5%8F%91/" class="post-category">
-                                    并发
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/AQS/">
-                            <span class="chip bg-color">AQS</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1078,7 +1062,7 @@ public abstract cla
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">151.2k</span>&nbsp;字
+                class="white-color">157.2k</span>&nbsp;字
             
             
             
