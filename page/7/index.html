@@ -320,6 +320,115 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2023/09/28/trouble/xian-shang-redis-de-zset-ji-he-zhan-yong-nei-cun-guo-da-wen-ti-fen-xi/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-5">
+    <div class="text-cover__meta">
+        <span>线上问题排查</span>
+        
+        <span>2023.09.28</span>
+        
+    </div>
+    <div class="text-cover__title">线上Redis的Zset集合占用内存过大问题分析</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、背景有一天，企微收到了一条告警：Redis实例内存达到80%已自动扩容。通过分析内存变化曲线，发现是近几天才开始涨得比较快。通过大key分析拿到了几个key，命名分别是ts_file_0、ts_file_1、…、ts_file_9，很明
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-28
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" class="post-category">
+                                    线上问题排查
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Redis/">
+                            <span class="chip bg-color">Redis</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/09/20/trouble/mei-zuo-xian-cheng-chi-ge-chi-dao-zhi-de-xian-shang-gu-zhang-fen-xi/">
+                        <div class="card-image">
+                            
+                            
+
+<div class="text-cover text-cover--card text-cover-palette-0">
+    <div class="text-cover__meta">
+        <span>线上问题排查</span>
+        
+        <span>2023.09.20</span>
+        
+    </div>
+    <div class="text-cover__title">没做线程池隔离导致的线上故障分析</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                            
+                            
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                一、背景线上服务监控告警某个服务接口大量失败，先访问出问题的机器，拿到异常堆栈，然后临时紧急重启后正常。
+异常堆栈信息如下：[DUBBO] Thread pool is EXHAUSTED! Thread Name: DubboServer
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" class="post-category">
+                                    线上问题排查
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2023/09/19/redis/wei-shi-me-redis-ji-qun-de-zui-da-cao-shu-shi-16384/">
                         <div class="card-image">
                             
@@ -864,112 +973,6 @@ Consumer端从Broker将消息拉取并消费
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/13/kafka/shi-me-shi-kafka-de-chong-ping-heng-ji-zhi/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-3">
-    <div class="text-cover__meta">
-        <span>Kafka</span>
-        
-        <span>2023.09.13</span>
-        
-    </div>
-    <div class="text-cover__title">什么是Kafka的重平衡机制？</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是Kafka的重平衡机制？Kafka的重平衡（Rebalance）机制指的是消费者组（Consumer Group）新增或删除消费者（Consumer）时，Kafka集群会重新分配topic分区给各个消费者，以保证每个消费者消费的分
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-13
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Kafka/" class="post-category">
-                                    Kafka
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2023/09/13/kafka/shi-me-shi-xiao-xi-dui-lie/">
-                        <div class="card-image">
-                            
-                            
-
-<div class="text-cover text-cover--card text-cover-palette-5">
-    <div class="text-cover__meta">
-        <span>Kafka</span>
-        
-        <span>2023.09.13</span>
-        
-    </div>
-    <div class="text-cover__title">什么是消息队列？</div>
-    <span class="text-cover__mark" aria-hidden="true"></span>
-</div>
-
-                            
-                            
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一、什么是消息队列？消息队列（Message Queue），简称MQ，是一种应用间的通信方式，主要由三部分组成：
-
-生产者（Producer）：负责消息发送
-代理（Broker）：负责消息存储
-消费者（Consumer）：负责消息消费
-
-二
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-13
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Kafka/" class="post-category">
-                                    Kafka
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1072,7 +1075,7 @@ Consumer端从Broker将消息拉取并消费
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">157.2k</span>&nbsp;字
+                class="white-color">163.6k</span>&nbsp;字
             
             
             
