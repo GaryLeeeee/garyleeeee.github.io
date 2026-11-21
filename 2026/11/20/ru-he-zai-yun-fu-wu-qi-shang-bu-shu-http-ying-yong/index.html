@@ -1,0 +1,1498 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="用 Caddy 部署 HTTP 应用, GaryLee">
+    <meta name="description" content="记录自己的学习笔记">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>用 Caddy 部署 HTTP 应用 | GaryLee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">GaryLee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">GaryLee</div>
+        <div class="logo-desc">
+            
+            记录自己的学习笔记
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/GaryLeeeee" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Follow Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/GaryLeeeee" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Follow Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+
+<div class="bg-cover pd-header post-cover post-cover--text">
+    
+
+<div class="text-cover text-cover--hero text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>Http</span>
+        
+        <span>2026.11.20</span>
+        
+    </div>
+    <div class="text-cover__title">用 Caddy 部署 HTTP 应用</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+</div>
+
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Http/">
+                                <span class="chip bg-color">Http</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Http/" class="post-category">
+                                Http
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-11-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2026-11-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.5k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>本文用一个自用工具箱举例，演示如何在云服务器上部署 HTTP 应用。这个案例运行在腾讯云轻量应用服务器的 Ubuntu 26.04 上，前端用 Vue，后端用 FastAPI。先通过公网 IPv4 和 HTTPS 访问，浏览器会弹出整站密码验证。</p>
+<p>部署自己的应用时，按项目实际情况替换文中的构建和启动命令、服务名、安装目录与监听端口。</p>
+</blockquote>
+<h2 id="给-AI-的部署指令"><a href="#给-AI-的部署指令" class="headerlink" title="给 AI 的部署指令"></a>给 AI 的部署指令</h2><p>在项目目录打开能使用终端的 AI 助手，填好前三项，再把整段指令发给它。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">请把当前项目部署到我的 Ubuntu 云服务器，并完成验收。
+服务器连接 &lt;SSH 别名，或我在云控制台终端操作&gt;
+公网入口 &lt;公网 IP 或域名，可附端口&gt;
+访问权限 &lt;公开，或整站加密码&gt;
+
+1. 先读项目说明、构建和启动脚本，再检查服务器上已有的服务、端口和 Caddy 配置。按实际环境确定命令。
+2. 构建、上传并安装应用。需要常驻的后端用独立的 systemd 服务和本机端口。将新站点合并到 Caddy 配置，校验后重载。配好 HTTPS 和访问权限，域名入口先核对 DNS。
+3. 在已授权的环境里直接执行。遇到需要我登录云控制台、放行端口或输入密码的步骤，给我这一环节的具体操作，完成后继续。
+4. 依次验证服务状态、本机健康检查和公网访问。出错先看相关日志，修复后复测。最后告诉我访问地址、服务名、实际验收结果，以及启停和查看日志的命令。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="一、Caddy-是什么？"><a href="#一、Caddy-是什么？" class="headerlink" title="一、Caddy 是什么？"></a>一、Caddy 是什么？</h2><p>Caddy 是一个开源 Web 服务器，可以直接提供网页、图片等静态文件，也可以做反向代理。反向代理就是由 Caddy 接收浏览器的请求，转交给后端应用，再把应用的响应送回浏览器。</p>
+<p>在这次部署里，Caddy 是工具箱的公网入口。它负责申请和续期 HTTPS 证书、验证网站访问密码，再通过本机 HTTP 把请求交给 FastAPI。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">浏览器 → Caddy（80 跳转 HTTPS，443 负责 TLS 和访问密码）
+           → HTTP 应用（127.0.0.1:8000，由 systemd 管理）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>云防火墙放通 TCP 80 和 443，供网页访问和证书验证。应用端口 8000 只监听服务器本机。22 用于 SSH 和 SCP，按管理来源放行。部署前用 <code>sudo ss -lntp '( sport = :80 or sport = :443 or sport = :8000 )'</code> 看端口是否已被占用。</p>
+<h3 id="Caddy-和-Nginx-有什么区别？"><a href="#Caddy-和-Nginx-有什么区别？" class="headerlink" title="Caddy 和 Nginx 有什么区别？"></a>Caddy 和 Nginx 有什么区别？</h3><p>两者都能提供静态文件和做反向代理。</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>Caddy</th>
+<th>Nginx</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTPS</td>
+<td>内置自动 HTTPS，可申请、续期证书并设置 HTTP 跳转</td>
+<td>常见配置用 <code>ssl_certificate</code> 加载证书，安装并配置 ACME 模块也能自动申请和续期</td>
+</tr>
+<tr>
+<td>转发规则</td>
+<td>站点地址对应域名或端口，<code>handle</code> 或 <code>handle_path</code> 匹配路径，<code>reverse_proxy</code> 指定后端</td>
+<td><code>listen</code> 和 <code>server_name</code> 选择站点，<code>location</code> 匹配路径，<code>proxy_pass</code> 指定后端</td>
+</tr>
+</tbody></table>
+<h2 id="二、把应用跑起来"><a href="#二、把应用跑起来" class="headerlink" title="二、把应用跑起来"></a>二、把应用跑起来</h2><h3 id="1-准备并上传部署包"><a href="#1-准备并上传部署包" class="headerlink" title="1. 准备并上传部署包"></a>1. 准备并上传部署包</h3><p>本例先在本机构建前端，部署包放入 <code>frontend/dist</code>、后端源码和 <code>deploy/</code> 下的部署文件。服务器由 FastAPI 提供前端静态文件，运行时只需后端环境。</p>
+<p>在工具箱项目根目录生成部署包。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> --prefix frontend ci
+<span class="token function">npm</span> --prefix frontend run build
+<span class="token function">tar</span> --exclude<span class="token operator">=</span><span class="token string">'__pycache__'</span> --exclude<span class="token operator">=</span><span class="token string">'config.toml'</span> -czf lee-toolbox-deploy.tar.gz <span class="token punctuation">\</span>
+  frontend/dist backend/app backend/pyproject.toml backend/requirements.lock.txt <span class="token punctuation">\</span>
+  deploy/configure.py deploy/lee-toolbox.service<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>把部署包传到服务器的 <code>/tmp</code>。这次走腾讯云网页终端的「文件管理」上传，公网 SSH 超时期间仍可继续部署。上传方式见 <a href="/2026/11/20/codex/ru-he-zai-yun-fu-wu-qi-shang-shi-yong-codex/" title="云服务器使用笔记">云服务器使用笔记</a>。</p>
+<h3 id="2-安装后端和-Caddy"><a href="#2-安装后端和-Caddy" class="headerlink" title="2. 安装后端和 Caddy"></a>2. 安装后端和 Caddy</h3><p>以下命令在服务器的管理账号下执行。代码放在 <code>/opt/lee-toolbox</code>，任务和下载结果放在 <code>/var/lib/lee-toolbox</code>，由专用账号写入。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y python3-venv ffmpeg <span class="token function">curl</span> gnupg
+<span class="token function">sudo</span> <span class="token function">install</span> -d -m 0755 /opt/lee-toolbox
+<span class="token function">sudo</span> <span class="token function">tar</span> --no-same-owner -xzf /tmp/lee-toolbox-deploy.tar.gz -C /opt/lee-toolbox
+<span class="token function">id</span> lee-toolbox <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">||</span> <span class="token function">sudo</span> <span class="token function">useradd</span> --system --user-group <span class="token punctuation">\</span>
+  --home-dir /var/lib/lee-toolbox --shell /usr/sbin/nologin lee-toolbox
+<span class="token function">sudo</span> <span class="token function">install</span> -d -o lee-toolbox -g lee-toolbox -m 0750 /var/lib/lee-toolbox
+<span class="token function">sudo</span> python3 -m venv /opt/lee-toolbox/backend/.venv
+<span class="token function">sudo</span> /opt/lee-toolbox/backend/.venv/bin/python -m pip <span class="token function">install</span> <span class="token punctuation">\</span>
+  -c /opt/lee-toolbox/backend/requirements.lock.txt /opt/lee-toolbox/backend<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>按文末 Caddy 官方的 Debian/Ubuntu 安装步骤装稳定版。执行 <code>caddy version</code> 确认版本，本例的配置脚本要求 Caddy 2.11 或更新版本。</p>
+<h3 id="3-配置-HTTPS-和整站密码"><a href="#3-配置-HTTPS-和整站密码" class="headerlink" title="3. 配置 HTTPS 和整站密码"></a>3. 配置 HTTPS 和整站密码</h3><p>把 <code>PUBLIC_IP</code> 设为云控制台显示的公网 IPv4。脚本会交互式设置网站账号和密码，生成 <code>/etc/lee-toolbox/Caddyfile</code> 与 <code>toolbox.env</code>。Caddyfile 里的密码用 bcrypt 哈希保存。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">PUBLIC_IP</span><span class="token operator">=</span><span class="token string">'替换为服务器公网IPv4'</span>
+<span class="token function">sudo</span> python3 /opt/lee-toolbox/deploy/configure.py --site <span class="token string">"https://<span class="token variable">$PUBLIC_IP</span>"</span>
+<span class="token function">sudo</span> caddy validate --config /etc/lee-toolbox/Caddyfile --adapter caddyfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>给其他应用配置时，可以复用下面的 Caddyfile 结构。将 <code>PUBLIC_IPV4</code> 替换为实际公网 IP，<code>BCRYPT_HASH</code> 替换为 <code>caddy hash-password</code> 交互生成的值。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">{
+    default_sni PUBLIC_IPV4
+}
+
+https://PUBLIC_IPV4 {
+    tls {
+        issuer acme {
+            dir https://acme-v02.api.letsencrypt.org/directory
+            profile shortlived
+        }
+    }
+    basic_auth {
+        toolbox BCRYPT_HASH
+    }
+    reverse_proxy 127.0.0.1:8000
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>浏览器用 IP 建立 TLS 连接时通常省略 SNI，云服务器经过公网 NAT 后看到的本地地址可能是内网 IP。<code>default_sni</code> 指定在这种情况下用哪个地址选择证书。</p>
+<p>校验通过后安装配置并启用服务。下方复制命令适用于只部署这一站的 Caddy。已有其他站点时，将站点块和 <code>default_sni</code> 分别合并到原有站点配置和全局选项，校验完整的 Caddyfile 再重载。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> -n /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-toolbox
+<span class="token function">sudo</span> <span class="token function">install</span> -o root -g caddy -m 0640 /etc/lee-toolbox/Caddyfile /etc/caddy/Caddyfile
+<span class="token function">sudo</span> <span class="token function">install</span> -m 0644 /opt/lee-toolbox/deploy/lee-toolbox.service /etc/systemd/system/
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> --now lee-toolbox.service caddy
+<span class="token function">sudo</span> systemctl reload caddy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-证书怎么申请和续期？"><a href="#4-证书怎么申请和续期？" class="headerlink" title="4. 证书怎么申请和续期？"></a>4. 证书怎么申请和续期？</h3><p><strong>首次申请。</strong> Caddy 启动或重载上面的配置后，会通过 ACME 向 Let’s Encrypt 申请公网 IP 证书。签发机构从公网访问 Caddy，通过 TCP 80 上的 HTTP 验证或 TCP 443 上的 TLS 验证，确认你控制这个地址。本例保持两个端口都可从公网访问，服务器也要能通过 HTTPS 访问 ACME 接口。签发成功后，Caddy 会自动启用证书。</p>
+<p><strong>后续续期。</strong> <code>shortlived</code> 的 IP 证书有效期为 160 小时，也就是 6 天 16 小时。Caddy 会在到期前自动续期并切换到新证书。保持 <code>caddy</code> 服务运行和开机自启，保留它可读写的证书存储目录。Caddy 官方 systemd 服务默认使用 <code>/var/lib/caddy/.local/share/caddy</code>。</p>
+<p>在服务器上查看签发或续期日志，并读取 Caddy 当前提供的公网 IP 证书。<code>PUBLIC_IP</code> 沿用前面的设置。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> journalctl -u caddy -n <span class="token number">50</span> --no-pager
+openssl s_client -connect <span class="token number">127.0</span>.0.1:443 -noservername <span class="token punctuation">\</span>
+  -verify_ip <span class="token string">"<span class="token variable">$PUBLIC_IP</span>"</span> -verify_return_error <span class="token operator">&lt;</span>/dev/null <span class="token operator">|</span>
+  openssl x509 -noout -issuer -dates -ext subjectAltName<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>issuer</code> 是签发机构，<code>subjectAltName</code> 应包含当前公网 IP，<code>notAfter</code> 是到期时间。续期成功后，到期时间会往后延。遇到签发或续期失败，按日志核对公网端口、到 ACME 接口的出站连接和证书目录权限。用域名时还要核对 DNS 解析。</p>
+<h2 id="三、从服务器本机验收到公网"><a href="#三、从服务器本机验收到公网" class="headerlink" title="三、从服务器本机验收到公网"></a>三、从服务器本机验收到公网</h2><p>先检查后端健康接口，再在服务器本机走 Caddy 的 HTTPS 入口。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl is-active lee-toolbox.service caddy
+<span class="token function">curl</span> -fsS http://127.0.0.1:8000/api/health
+<span class="token function">curl</span> --noproxy <span class="token string">'*'</span> -sSI --connect-timeout <span class="token number">5</span> --max-time <span class="token number">10</span> <span class="token punctuation">\</span>
+  --resolve <span class="token string">"<span class="token variable">$PUBLIC_IP</span>:443:127.0.0.1"</span> <span class="token string">"https://<span class="token variable">$PUBLIC_IP</span>/"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>健康接口应返回 <code>"status":"ok"</code>，需要执行后台任务时还应确认 <code>worker_running</code> 为 <code>true</code>。最后一条把连接地址指向本机，仍按公网 IP 校验证书。返回 <code>401 Unauthorized</code> 且有 <code>WWW-Authenticate</code>，说明本机的 TLS 和密码保护都已响应。接着从电脑或手机的外部网络打开 <code>https://公网IP</code>，输入账号密码，确认应用首页能打开。</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>健康接口连不上，或 Caddy 返回 <code>502</code></td>
+<td>检查 <code>lee-toolbox.service</code> 日志和 <code>127.0.0.1:8000</code> 的监听状态</td>
+</tr>
+<tr>
+<td>公网提示证书错误</td>
+<td>检查 Caddy 的签发日志、当前访问地址和证书对应的 IP</td>
+</tr>
+<tr>
+<td>本机返回 <code>401</code>，公网连接超时</td>
+<td>检查公网 IP、云防火墙、系统防火墙，再换一个网络复测</td>
+</tr>
+</tbody></table>
+<p>查看应用日志用 <code>sudo journalctl -u lee-toolbox -n 40 --no-pager</code>。</p>
+<h2 id="四、这次实际踩到的两个坑"><a href="#四、这次实际踩到的两个坑" class="headerlink" title="四、这次实际踩到的两个坑"></a>四、这次实际踩到的两个坑</h2><h3 id="配置生成失败，查-issuer-acme-的参数"><a href="#配置生成失败，查-issuer-acme-的参数" class="headerlink" title="配置生成失败，查 issuer acme 的参数"></a>配置生成失败，查 <code>issuer acme</code> 的参数</h3><p>模板起初把 ACME 服务地址写成了 <code>ca</code>，Caddy 配置检查失败。<code>issuer acme</code> 块里应使用上文的 <code>dir</code>。修正模板后重新生成配置，先跑 <code>caddy validate</code>，看到校验通过再安装。</p>
+<h3 id="本机-HTTPS-正常，公网-22-和-443-都超时"><a href="#本机-HTTPS-正常，公网-22-和-443-都超时" class="headerlink" title="本机 HTTPS 正常，公网 22 和 443 都超时"></a>本机 HTTPS 正常，公网 22 和 443 都超时</h3><p>当时后端健康检查是 200，本机 HTTPS 是 401，云防火墙已放行，UFW 未启用。电脑和手机移动网络访问都超时。服务器抓到客户端的 <code>SYN</code> 和反复重发的 <code>SYN-ACK</code>，排查范围缩小到了公网连接握手，具体丢包位置留给云厂商核查。</p>
+<p>复测时可按发起访问的客户端公网 IP 抓 30 秒 TCP 包，这样能同时核对第三次握手的 <code>ACK</code>。Ubuntu 缺少 <code>tcpdump</code> 时可以用 apt 安装。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">CLIENT_IP</span><span class="token operator">=</span><span class="token string">'替换为客户端公网IPv4'</span>
+<span class="token function">sudo</span> <span class="token function">timeout</span> --signal<span class="token operator">=</span>INT 30s tcpdump -nn -i any -s <span class="token number">96</span> -c <span class="token number">40</span> <span class="token punctuation">\</span>
+  <span class="token string">"host <span class="token variable">$CLIENT_IP</span> and tcp port 443"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>抓包运行期间，从该客户端重新访问。提交网络工单时附上故障时间、防火墙规则、<strong>本机返回 401</strong> 和 <strong>公网超时</strong>的对比，以及抓包摘要。这次按腾讯云工单建议更换了公网 IP，新 IP 的 22、80、443 均通过连通性检查，随后验收了 HTTPS 和整站密码保护。</p>
+<h2 id="五、更换公网-IP-或接入域名"><a href="#五、更换公网-IP-或接入域名" class="headerlink" title="五、更换公网 IP 或接入域名"></a>五、更换公网 IP 或接入域名</h2><p>更换 IP 后更新 <code>PUBLIC_IP</code>，用 <code>--replace</code> 重新生成配置。这会同步更新应用允许的公网访问地址，并重新设置网站密码。配置校验并安装后，分别重启应用和重载 Caddy，让 Caddy 为新 IP 申请证书。SSH、SCP 也改用新 IP。下方的复制命令适用于单站点，同机有多个站点时，将变更合并到共享 Caddyfile 后再校验和重载。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> python3 /opt/lee-toolbox/deploy/configure.py --site <span class="token string">"https://<span class="token variable">$PUBLIC_IP</span>"</span> --replace
+<span class="token function">sudo</span> caddy validate --config /etc/lee-toolbox/Caddyfile --adapter caddyfile
+<span class="token function">sudo</span> <span class="token function">install</span> -o root -g caddy -m 0640 /etc/lee-toolbox/Caddyfile /etc/caddy/Caddyfile
+<span class="token function">sudo</span> systemctl restart lee-toolbox
+<span class="token function">sudo</span> systemctl reload caddy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>有域名后，把 <code>tools.example.com</code> 的 DNS A 记录指向公网 IPv4。解析生效后，改用 <code>--site https://tools.example.com</code> 生成配置，再按上面的步骤校验并重载。想同时保留 IP 入口，可以重复指定 <code>--site</code>。本次实测的是公网 IP 入口。</p>
+<h2 id="六、怎么单独启停应用？多个应用怎么访问？"><a href="#六、怎么单独启停应用？多个应用怎么访问？" class="headerlink" title="六、怎么单独启停应用？多个应用怎么访问？"></a>六、怎么单独启停应用？多个应用怎么访问？</h2><h3 id="按-systemd-服务名启停"><a href="#按-systemd-服务名启停" class="headerlink" title="按 systemd 服务名启停"></a>按 systemd 服务名启停</h3><p>部署包装好后，按对应的 systemd 服务名管理进程。工具箱的服务名是 <code>lee-toolbox.service</code>。装了多个应用时，可以先列出已安装的单元，再看目标服务的状态。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl list-unit-files <span class="token string">'lee-*.service'</span> <span class="token string">'lee-*.timer'</span>
+systemctl status lee-toolbox.service --no-pager<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>要做的事</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>临时停止应用</td>
+<td><code>sudo systemctl stop lee-toolbox.service</code></td>
+</tr>
+<tr>
+<td>手动启动应用</td>
+<td><code>sudo systemctl start lee-toolbox.service</code></td>
+</tr>
+<tr>
+<td>立即停止并取消开机自启</td>
+<td><code>sudo systemctl disable --now lee-toolbox.service</code></td>
+</tr>
+<tr>
+<td>立即启动并设置开机自启</td>
+<td><code>sudo systemctl enable --now lee-toolbox.service</code></td>
+</tr>
+</tbody></table>
+<p>停单个应用时操作它自己的服务，Caddy 作为共享入口继续运行。保留原代理配置时，暂停的应用在通过密码验证后通常会返回 <code>502</code>。若应用由 <code>.timer</code> 定时拉起，暂停后续调度时也用 <code>systemctl stop</code> 或 <code>disable --now</code> 操作对应的定时器。</p>
+<h3 id="公网入口可以按端口、路径或子域名分流"><a href="#公网入口可以按端口、路径或子域名分流" class="headerlink" title="公网入口可以按端口、路径或子域名分流"></a>公网入口可以按端口、路径或子域名分流</h3><p>同机部署时，给每个应用分配独立的服务名、运行目录和本机监听端口。这里用工具箱的 <code>lee-toolbox.service</code> 和 <code>127.0.0.1:8000</code> 举例，再假设有一个笔记应用，使用 <code>lee-notes.service</code> 和 <code>127.0.0.1:8001</code>。这两个后端端口都只在本机监听，由同一个 Caddy 对外接收请求。</p>
+<table>
+<thead>
+<tr>
+<th>公网分流方式</th>
+<th>浏览器怎么访问</th>
+<th>Caddy 怎么配置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>按端口</td>
+<td><code>https://公网IP/</code> 和 <code>https://公网IP:8443/</code></td>
+<td>默认 <code>443</code> 转发给工具箱，另设 <code>8443</code> 的 HTTPS 站点转发给第二个应用，同时放通公网 TCP 8443</td>
+</tr>
+<tr>
+<td>按路径</td>
+<td><code>https://公网IP/tools/</code> 和 <code>https://公网IP/notes/</code></td>
+<td>两个应用共用 <code>443</code>，按 URL 里的路径选择后端。<code>handle_path /notes/*</code> 匹配后会去掉 <code>/notes</code> 前缀再转发</td>
+</tr>
+<tr>
+<td>按子域名</td>
+<td><code>https://tools.example.com/</code> 和 <code>https://notes.example.com/</code></td>
+<td>两个域名解析到同一个公网 IP，在 Caddy 中分别写站点块，共用 <code>443</code></td>
+</tr>
+</tbody></table>
+<p>同一个公网 IP 的证书可用于不同 HTTPS 端口，ACME 验证仍走 <code>80</code> 或 <code>443</code>。</p>
+<p>这里常说的按 URI 分流，具体匹配的是 <code>/tools/</code> 这样的路径。要把当前工具箱放到子路径下，需要一起调整前端路由、静态资源和 <code>/api/</code> 请求的前缀。只有 IP 时，可以按端口区分入口，例如工具箱用 <code>443</code>，Caddy UI 用 <code>8443</code>。有域名之后，可以用子域名区分，各应用都从根路径访问。</p>
+<h3 id="怎么查看路由？"><a href="#怎么查看路由？" class="headerlink" title="怎么查看路由？"></a>怎么查看路由？</h3><p><strong>看请求转发给哪个应用。</strong> 在服务器上用 systemd 确认 <code>--config</code> 指向的文件。本例使用 <code>/etc/caddy/Caddyfile</code>。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl show caddy -p ExecStart -p ExecReload
+<span class="token function">sudo</span> <span class="token function">less</span> /etc/caddy/Caddyfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>在对应站点块里，看 <code>handle</code> 或 <code>handle_path</code> 匹配的路径，再看 <code>reverse_proxy</code> 指向的端口。遇到 <code>import</code> 就沿路径查看包含的文件。本例的 <code>reverse_proxy 127.0.0.1:8000</code> 转发整个工具箱站点。</p>
+<p>如果想确认 Caddy 当前加载的配置，可以在服务器本机查询默认的管理接口。下面的命令用 <code>jq</code> 列出监听、匹配的主机和路径，以及代理目标。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> --noproxy <span class="token string">'*'</span> -fsS http://localhost:2019/config/apps/http/servers <span class="token operator">|</span>
+  jq -r <span class="token string">'.. | objects | (.listen[]?, .host[]?, .path[]?, .upstreams[]?.dial?)'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>用 Nginx 时，<code>sudo nginx -T</code> 会校验并展开磁盘上的配置，包括 <code>include</code> 文件。按 <code>listen</code>、<code>server_name</code>、<code>location</code>、<code>proxy_pass</code> 顺序找对应规则。</p>
+<p><strong>看工具箱有哪些接口。</strong> 登录网站后打开 <code>https://公网IP/api/docs</code> 就能看 FastAPI 的接口列表，例如 <code>GET /api/health</code>。看源码时，接口注册在 <code>backend/app/main.py</code>，<code>/tasks</code> 这类前端页面路由在 <code>frontend/src/app/router.ts</code>。</p>
+<h2 id="七、Caddy-UI-和-IP-白名单"><a href="#七、Caddy-UI-和-IP-白名单" class="headerlink" title="七、Caddy UI 和 IP 白名单"></a>七、Caddy UI 和 IP 白名单</h2><blockquote>
+<p>手动改路由或白名单，要 SSH 登录服务器，编辑 Caddyfile，再校验、重载。接入 Caddy UI 后，可以在网页上查看路由、修改并应用配置。这个工具箱用手机打开时，每次都要重新输账号和密码。把常用且可信的公网出口加进白名单，手机连上那个网络就能直接访问。</p>
+</blockquote>
+<h3 id="接入管理面板"><a href="#接入管理面板" class="headerlink" title="接入管理面板"></a>接入管理面板</h3><p>本例用 Docker Compose 运行社区版 caddy-ui 3.9.1。装好 Docker 和 Compose 后，将工具箱的 <code>caddy-ui-deploy.tar.gz</code> 解压到 <code>/opt/caddy-ui</code>，在 <code>compose.yaml</code> 中把 <code>CADDY_UI_EXTERNAL_URL</code> 设为 <code>https://公网IP:8443</code>，再执行 <code>sudo bash /opt/caddy-ui/install.sh</code>。</p>
+<ol>
+<li>在云防火墙放行 TCP <code>8443</code>，来源只填管理设备的公网出口 IP，例如 <code>198.51.100.10/32</code>。用同一浏览器和网络确认出口 IP。</li>
+<li>在 Caddyfile 新增 <code>https://PUBLIC_IPV4:8443</code> 站点块，复用前面的 <code>tls</code> 配置，加上 <code>reverse_proxy 127.0.0.1:9877</code>，校验后重载。首次打开面板时创建管理员并保存恢复密钥。</li>
+<li>在 <strong>Instances</strong> 中选中预置实例，手动添加时选 <strong>Local</strong>。本例的 <code>Config Path</code> 是 <code>/etc/caddy/Caddyfile</code>，<code>Data Path</code> 是 <code>/var/lib/caddy/.local/share/caddy</code>，<code>Container Name</code> 留空。<code>Admin URL</code> 填内网代理 <code>http://172.30.201.1:20190</code>，由它转发到宿主机的 <code>127.0.0.1:2019</code>。</li>
+</ol>
+<p>选中实例后，在 <strong>Routes</strong> 看转发规则，在 <strong>Caddyfile</strong> 修改配置。管理 API 的 <code>2019</code> 和 <code>20190</code> 仅供本机和内网使用。</p>
+<h3 id="给工具箱加免密码-IP-和访问日志"><a href="#给工具箱加免密码-IP-和访问日志" class="headerlink" title="给工具箱加免密码 IP 和访问日志"></a>给工具箱加免密码 IP 和访问日志</h3><p>在工具箱的 <code>https://PUBLIC_IPV4 { ... }</code> 站点块内，把原有 <code>basic_auth</code> 改为下面的写法，保留原账号和密码哈希。将示例 IP 换成实际公网出口，多个 IP 用空格隔开。</p>
+<pre class="line-numbers language-caddyfile" data-language="caddyfile"><code class="language-caddyfile">@need_login not remote_ip 198.51.100.10/32 203.0.113.20/32
+basic_auth @need_login {
+    EXISTING_USER EXISTING_PASSWORD_HASH
+}
+
+log {
+    output file /var/lib/caddy/.local/share/caddy/access.log {
+        roll_size 10MiB
+        roll_keep 7
+    }
+    format json
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>保存并应用后，用两种网络各开一次无痕窗口。白名单内可直接进入，其他 IP 仍会弹出密码框。给手机加白名单时，先用打算访问的 Wi-Fi 或移动网络查公网 IP，移动网络的出口可能变化或由多人共用。</p>
+<p>把实例的 <strong>Log Path</strong> 设为 <code>/var/lib/caddy/.local/share/caddy/access.log</code>。重新访问工具箱后，在 <strong>Logs → Caddy</strong> 查看来源 IP、请求路径和状态码。</p>
+<h3 id="这次踩到的三个坑"><a href="#这次踩到的三个坑" class="headerlink" title="这次踩到的三个坑"></a>这次踩到的三个坑</h3><ul>
+<li><strong>本机 HTTPS 返回 <code>200</code>，公网打不开面板。</strong> 云控制台的「当前登录 IP」取自访问控制台时的出口。这次按浏览器实际出口修正 <code>8443</code> 防火墙规则后，面板恢复访问。</li>
+<li><strong>内部代理健康检查返回 <code>403</code>。</strong> 这次健康检查的来源是服务器自己的内网 IP。在 <code>admin-proxy.conf</code> 的 <code>deny all</code> 前加一条该 IP 的 <code>allow</code>，再到 <code>/opt/caddy-ui</code> 执行 <code>sudo docker compose up -d --force-recreate caddy-ui-admin</code>。</li>
+<li><strong>面板提示保存失败。</strong> 在 <code>/opt/caddy-ui</code> 用 <code>sudo docker compose logs --tail=60 caddy-ui-backend</code> 查报错。这次是 <code>@need_login</code> 写到了站点外。把它与 <code>basic_auth</code>、<code>log</code> 一起放进工具箱站点的大括号即可。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://caddyserver.com/">Caddy 官方介绍</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/install#debian-ubuntu-raspbian">Caddy 在 Debian 和 Ubuntu 上的安装</a></li>
+<li><a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/directives/tls#issuers">Caddy 的 ACME 参数</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/options#default_sni">TLS 默认 SNI</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/directives/basic_auth">Basic Auth</a></li>
+<li><a target="_blank" rel="noopener" href="https://caddyserver.com/docs/automatic-https">Caddy 自动 HTTPS 与证书续期</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/running#using-the-service">Caddy 服务与证书存储</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/latest/systemctl.html">systemctl 服务管理</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/concepts#addresses">Caddy 站点地址</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/directives/handle_path">Caddy 按路径分流</a></li>
+<li><a target="_blank" rel="noopener" href="https://caddyserver.com/docs/api">Caddy 管理接口</a>、<a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/request_processing.html">Nginx 请求匹配</a>、<a target="_blank" rel="noopener" href="https://nginx.org/en/docs/switches.html">Nginx 命令参数</a>、<a target="_blank" rel="noopener" href="https://nginx.org/en/docs/http/ngx_http_acme_module.html">Nginx ACME 模块</a></li>
+<li><a target="_blank" rel="noopener" href="https://letsencrypt.org/2026/01/15/6day-and-ip-general-availability/">Let’s Encrypt IP 证书和有效期</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/1207/44577">腾讯云轻量实例防火墙</a>、<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/1207/71733">更换实例公网 IP</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zackwag.com/caddy-ui/setup.html">caddy-ui 初始化</a>、<a target="_blank" rel="noopener" href="https://www.zackwag.com/caddy-ui/instances.html">Local 实例设置</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/matchers#remote_ip">Caddy IP 匹配</a>、<a target="_blank" rel="noopener" href="https://caddyserver.com/docs/caddyfile/directives/log">访问日志</a></li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">GaryLee</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://garyleeeee.github.io/2026/11/20/ru-he-zai-yun-fu-wu-qi-shang-bu-shu-http-ying-yong/">https://garyleeeee.github.io/2026/11/20/ru-he-zai-yun-fu-wu-qi-shang-bu-shu-http-ying-yong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">GaryLee</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Http/">
+                                    <span class="chip bg-color">Http</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/null" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/null" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/11/20/ru-he-zai-yun-fu-wu-qi-shang-bu-shu-http-ying-yong/">
+                    <div class="card-image">
+                        
+                        
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>Http</span>
+        
+        <span>2026.11.20</span>
+        
+    </div>
+    <div class="text-cover__title">用 Caddy 部署 HTTP 应用</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                        
+                        
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            以 Ubuntu 上的工具箱为例，用 systemd 运行应用、用 Caddy 配置公网 IP 的 HTTPS 和整站密码，并记录证书配置与公网连接超时的排查过程。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-11-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Http/" class="post-category">
+                                    Http
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Http/">
+                        <span class="chip bg-color">Http</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/11/20/codex/yong-codex-zuo-ding-shi-tui-song-xiao-zhu-shou/">
+                    <div class="card-image">
+                        
+                        
+
+<div class="text-cover text-cover--card text-cover-palette-1">
+    <div class="text-cover__meta">
+        <span>Codex</span>
+        
+        <span>2026.11.20</span>
+        
+    </div>
+    <div class="text-cover__title">用 Codex 做定时推送小助手，每天把金价简报发到飞书</div>
+    <span class="text-cover__mark" aria-hidden="true"></span>
+</div>
+
+                        
+                        
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            用 Codex CLI 查行情、Python 校验并发送简报、systemd 按北京时间调度，附飞书签名、分步验证和单机去重示例。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-11-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Codex/" class="post-category">
+                                    Codex
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Codex/">
+                        <span class="chip bg-color">Codex</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2026</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">GaryLee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">174.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/GaryLeeeee" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:664306561@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=664306561" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 664306561" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
